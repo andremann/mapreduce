@@ -51,14 +51,36 @@ public class Stats implements Serializable,Writable {
 		}
 	}
 
-	
+	/**
+	 * Aggregate statistics 
+	 * 
+	 * @param statsList
+	 */
 	public Stats(List<Stats> statsList){
 		//TODO
+		//only for reducer, no combiners
 		/**
 		 * Costruttore utilizzato nel reducer
 		 * per effettuare la condensazione di tutte
 		 * le statistiche
 		 */
+		
+		int n=statsList.size();
+		int d=statsList.get(0).s1.length;		//TODO inserire controllo che la lista non sia vuota??
+		s0=0;
+		s1=new double[d];
+		s2=new double[d];
+		for(Stats iterStat:statsList) {
+			s0+=iterStat.s0;
+			double [] s1iter=iterStat.s1;
+			double [] s2iter=iterStat.s2;
+			for(int dim=0; dim<d; dim++) {
+				s1[dim]+=s1iter[dim];
+				s2[dim]+=s2iter[dim];
+			}
+		}
+			
+		
 	}
 	
 	public void update(List<Stats> statsList) {
@@ -72,12 +94,12 @@ public class Stats implements Serializable,Writable {
 		 * da un vettore di parametri gaussiani
 		 */
 //		Note Lucia:
-//		questo lo eliminerei oppure, se si vuole allegerire il codice del mapper,
-//		lo si definisce un  metodo tipo
+//		questo lo eliminerei oppure, se si vuole alleggerire il codice del mapper,
+//		 si può definisce un  metodo tipo
 //		 public Stats[] computeStats(GaussianParams[] params, double[] x){
 //		int k=params.length;
 //		Stats[] stat=new Stats[k];
-//		double[] p =PoteriorProbability.compute_p(params, x);//compute posterior probability
+//		double[] p =PosteriorProbability.compute_p(params, x);//compute posterior probability
 //		for(int i=0; i<k; i++) {
 //			stat[i]=new Stats(p[i], params[i].getMu(), x); //compute statistics
 //		}

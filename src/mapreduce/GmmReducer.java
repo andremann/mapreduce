@@ -23,7 +23,7 @@ public class GmmReducer extends Reducer<IntWritable, Stats, Text, GaussianParams
 				statList.add(it.next());
 			};
 			Stats globalStats = new Stats(statList);
-			GaussianParams theta = new GaussianParams(globalStats);
+			GaussianParams theta = new GaussianParams(globalStats,statList.size());
 			context.write(new Text(""), theta);
 			
 	}

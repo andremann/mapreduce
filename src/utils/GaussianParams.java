@@ -13,17 +13,26 @@ public class GaussianParams{
 		/**
 		 * Usato nel mapper.
 		 */
-		//Lucia:
-//		qui non ho capito cosa volevate fare, 
-//		perchè nel mapper i parametri li inizializziamo leggendoli da hdfs
 	}
 	
 	
-	public GaussianParams(Stats stat){
-		//TODO
+	public GaussianParams(Stats stat, int n) throws Exception{
 		/**
 		 * Usato nel reducer.
 		 */
+		double nk=stat.getS0();
+		mu=stat.getS1();
+		sigma=stat.getS2();
+		int d=mu.length; 
+		if(d!=sigma.length) { 
+			throw new Exception("parameters mu and sigma should have the same dimensionality");
+			}
+		
+		w=nk/n;
+		for(int dim=0; dim<d; dim++) {
+			mu[dim]/=nk;
+			sigma[dim]/=nk;
+		}		
 	}
 	
 	public double getW() {
