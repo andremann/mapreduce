@@ -31,6 +31,27 @@ public class Stats implements Serializable,Writable {
 		s2 = new double[d];
 	}
 	
+	/**
+	 * Compute zero, first and second-order statistics given a posterior probability and the observation x:
+	 * @param p  posterior probabilities related to one gaussian
+	 * @param mu mean of the actual gaussian
+	 * @param x sample point
+	 */
+	public Stats(double p, double[] mu, double[] x) {
+		int d=x.length;
+		s0 = p;
+		s1 = new double[d];
+		s2 = new double[d]; 
+		for(int dim=0; dim<d;dim++) {
+			double xdim=x[dim];
+			double xMuDiff=xdim-mu[dim];
+			s1[dim]=p*xdim;
+			s2[dim]=xMuDiff*xMuDiff*p;
+				
+		}
+	}
+
+	
 	public Stats(List<Stats> statsList){
 		//TODO
 		/**
@@ -50,6 +71,21 @@ public class Stats implements Serializable,Writable {
 		 * Metodo che ricalcola le statistiche a partire
 		 * da un vettore di parametri gaussiani
 		 */
+//		Note Lucia:
+//		questo lo eliminerei oppure, se si vuole allegerire il codice del mapper,
+//		lo si definisce un  metodo tipo
+//		 public Stats[] computeStats(GaussianParams[] params, double[] x){
+//		int k=params.length;
+//		Stats[] stat=new Stats[k];
+//		double[] p =PoteriorProbability.compute_p(params, x);//compute posterior probability
+//		for(int i=0; i<k; i++) {
+//			stat[i]=new Stats(p[i], params[i].getMu(), x); //compute statistics
+//		}
+//		
+//		}
+	
+		
+		
 	}	
 	public double getS0() {
 		return s0;
