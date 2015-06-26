@@ -1,9 +1,27 @@
-package it.unipi.gmm.utils;
+package utils;
 
-public class GaussianParams {
+
+
+public class GaussianParams{
 	private double w;
 	private double[] mu;
 	private double[] sigma;
+	
+	
+	public GaussianParams(){
+		//TODO
+		/**
+		 * Usato nel mapper.
+		 */
+	}
+	
+	
+	public GaussianParams(Stats stat){
+		//TODO
+		/**
+		 * Usato nel reducer.
+		 */
+	}
 	
 	public double getW() {
 		return w;
@@ -19,6 +37,7 @@ public class GaussianParams {
 	}
 	
 	public void setMu(String line) {
+		
 		//TODO
 		return;
 	}

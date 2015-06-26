@@ -1,7 +1,4 @@
-package it.unipi.gmm.mapreduce;
-
-import it.unipi.gmm.utils.GaussianParams;
-import it.unipi.gmm.utils.Stats;
+package mapreduce;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,6 +11,9 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
+import utils.GaussianParams;
+import utils.Stats;
+
 public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats>{
 	
 	@Override
@@ -21,18 +21,24 @@ public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats>{
 			throws IOException, InterruptedException {
 		
 		Configuration conf = context.getConfiguration();
+		
 		int k = conf.getInt("k", -1);
+		
 		String paramsFilename = conf.getStrings("initParams")[0];
 		
-		String[] split = value.toString().split("\\s+\t");
+		String[] split = value.toString().split("\\s+");
 		int d = split.length;
+		GaussianParams params[] = readParamsFromHdfs(paramsFilename, context, k, d);
+		Stats stat = new Stats(d);
+		stat.update(params);
 		double[] x = new double[d];
 		for (int i = 0; i < d; i++) {
 			x[i] = Double.parseDouble(split[i]);
+			context.write(new IntWritable(i), stat);
 		}
 		
 		// Load params from hdfs
-		GaussianParams params[] = readParamsFromHdfs("", context, k, d);
+		
 		
 		
 		
@@ -54,7 +60,8 @@ public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats>{
 		for(int i=0; i<k;++i){
 			params[i]=new GaussianParams();
 		}
-		Path pt=new Path("hdfs://" + filename);
+
+		Path pt=new Path(filename);
 		FileSystem fs = FileSystem.get(context.getConfiguration());
 		BufferedReader br=new BufferedReader(new InputStreamReader(fs.open(pt)));
 		try {
@@ -62,7 +69,6 @@ public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats>{
 		  line=br.readLine();
 		  int counter = 0;
 		  while (line != null){
-		    System.out.println(line);
 		    int index = counter / 3;
 		    switch (counter%3){
 			    case 0: params[index].setW(Double.parseDouble(line));break;
@@ -70,12 +76,11 @@ public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats>{
 			    case 2: params[index].setSigma(line); break;
 			    default: break;
 		    }
-		    //counter++;
-		    // be sure to read the next line otherwise you'll get an infinite loop
+		    counter++;
 		    line = br.readLine();
 		  }
 		} finally {
-		  // you should close out the BufferedReader
+
 		  br.close();
 		}
 		
