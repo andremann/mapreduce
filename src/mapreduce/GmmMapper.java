@@ -12,7 +12,6 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import utils.GaussianParams;
-import utils.PoteriorProbability;
 import utils.Stats;
 
 public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats>{
@@ -29,27 +28,24 @@ public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats>{
 		
 		String[] split = value.toString().split("\\s+");
 		int d = split.length;
-		//GaussianParams params[] = readParamsFromHdfs(paramsFilename, context, k, d);// Load params from hdfs
-		//Stats stat = new Stats(d);
-		//stat.update(params);
 		double[] x = new double[d];
 		for (int dim = 0; dim < d; dim++) {
 			x[dim] = Double.parseDouble(split[dim]);
-		//	context.write(new IntWritable(dim), stat);
 		}
 		
 		// Load params from hdfs
 		GaussianParams params[] = readParamsFromHdfs(paramsFilename, context, k, d);
 		
-		//compute statistics
+	
+		/** togliere i commenti e testare dopo che si sono completate le funzioni di lettura dei parametri*/
+//		//compute statistics
 		Stats[] stat=new Stats[k];
-		double[] p =PoteriorProbability.compute_p(params, x);//compute posterior probability
+//		double[] p =PosteriorProbability.compute_p(params, x);//compute posterior probability
 		for(int i=0; i<k; i++) {
-			stat[i]=new Stats(p[i], params[i].getMu(), x); //compute statistics
+//			stat[i]=new Stats(p[i], params[i].getMu(), x); //compute statistics
 			context.write(new IntWritable(i), stat[i]);
-		}
+	}
 		
-			
 		
 	}
 	
