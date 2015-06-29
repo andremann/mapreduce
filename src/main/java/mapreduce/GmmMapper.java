@@ -17,7 +17,9 @@ import utils.Stats;
 public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats> {
 
 	@Override
-	protected void map(Object key, Text value, Mapper<Object, Text, IntWritable, Stats>.Context context) throws IOException, InterruptedException {
+	protected void map(Object key, Text value,
+			Mapper<Object, Text, IntWritable, Stats>.Context context)
+			throws IOException, InterruptedException {
 
 		Configuration conf = context.getConfiguration();
 
@@ -33,19 +35,18 @@ public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats> {
 		}
 
 		// Load params from hdfs
-		GaussianParams params[] = readParamsFromHdfs(paramsFilename, context, k, d);
+		GaussianParams params[] = readParamsFromHdfs(paramsFilename, context,
+				k, d);
 
 		/**
 		 * togliere i commenti e testare dopo che si sono completate le funzioni
 		 * di lettura dei parametri
 		 */
-		// //compute statistics
+		//compute statistics
 		Stats[] stat = new Stats[k];
-		// double[] p =PosteriorProbability.compute_p(params, x);//compute
-		// posterior probability
+		// double[] p = PosteriorProbability.compute_p(params, x);//compute posterior probability
 		for (int i = 0; i < k; i++) {
-			// stat[i]=new Stats(p[i], params[i].getMu(), x); //compute
-			// statistics
+			// stat[i] = new Stats(p[i], params[i].getMu(), x); //compute statistics
 			context.write(new IntWritable(i), stat[i]);
 		}
 
@@ -60,8 +61,7 @@ public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats> {
 	 * @return
 	 * @throws IOException
 	 */
-	private GaussianParams[] readParamsFromHdfs(String filename,
-			Context context, int k, int d) throws IOException {
+	private GaussianParams[] readParamsFromHdfs(String filename, Context context, int k, int d) throws IOException {
 		GaussianParams[] params = new GaussianParams[k];
 		for (int i = 0; i < k; i++) {
 			params[i] = new GaussianParams();
@@ -95,7 +95,6 @@ public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats> {
 		} finally {
 			br.close();
 		}
-
 		return params;
 	}
 
