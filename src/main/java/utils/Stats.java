@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.apache.hadoop.io.Writable;
 
-public class Stats implements Serializable,Writable {
+public class Stats implements Serializable, Writable {
 
 	private static final long serialVersionUID = 1295187155052274275L;
 	
@@ -95,7 +95,7 @@ public class Stats implements Serializable,Writable {
 		 */
 //		Note Lucia:
 //		questo lo eliminerei oppure, se si vuole alleggerire il codice del mapper,
-//		 si può definisce un  metodo tipo
+//		 si puï¿½ definisce un  metodo tipo
 //		 public Stats[] computeStats(GaussianParams[] params, double[] x){
 //		int k=params.length;
 //		Stats[] stat=new Stats[k];
