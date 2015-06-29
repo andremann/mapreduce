@@ -8,11 +8,10 @@ public class GaussianParams{
 	private double[] sigma;
 	
 	
-	public GaussianParams(){
-		//TODO
-		/**
-		 * Usato nel mapper.
-		 */
+	public GaussianParams(int d){
+		w = 0;
+		mu = new double[d];
+		sigma = new double[d];
 	}
 	
 	
@@ -49,8 +48,13 @@ public class GaussianParams{
 	}
 	
 	public void setMu(String line) {
-		
-		//TODO
+		String[] split = line.split("\\s+");
+		if (split.length != mu.length) {
+			// TODO: abort job
+		}
+		for (int i = 0; i < split.length; i++) {
+			mu[i] = Double.parseDouble(split[i]);
+		}
 		return;
 	}
 	public double[] getSigma() {
@@ -61,7 +65,13 @@ public class GaussianParams{
 	}
 	
 	public void setSigma(String line) {
-		//TODO
+		String[] split = line.split("\\s+");
+		if (split.length != sigma.length) {
+			// TODO: abort job
+		}
+		for (int i = 0; i < split.length; i++) {
+			mu[i] = Double.parseDouble(split[i]);
+		}
 		return;
 	}
 	

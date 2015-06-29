@@ -16,7 +16,7 @@ import utils.Stats;
 public class Main {
 	public static void main(String[] args) throws Exception {
 		if(args.length<4){
-			System.err.println("Usage program input_path output_path param_path k");
+			System.err.println("Usage program input_file output_folder param_file k");
 			return;
 		}
 		Configuration conf = new Configuration();
