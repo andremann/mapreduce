@@ -43,7 +43,7 @@ public class GaussianParams{
 		//			}
 		w=nk/n;
 		for(int dim=0; dim<d; dim++) {
-			// handle pathological case with too small sigmaSqr values
+			// handle pathological case with too small sigma values
 			if (sigma[dim] < min_sigmaSqr) {
 				sigma[dim]= 10000;
 				mu[dim]=mu[dim]*(2*Math.random()-1);
@@ -84,7 +84,7 @@ public class GaussianParams{
 	public void setMu(String line) {
 		String[] split = line.split("\\s+");
 		if (split.length != mu.length) {
-			// TODO: abort job
+			throw new RuntimeException("Input vector VS GaussianParams dimensions mismatch!!");
 		}
 		for (int i = 0; i < split.length; i++) {
 			mu[i] = Double.parseDouble(split[i]);
@@ -103,7 +103,7 @@ public class GaussianParams{
 	public void setSigma(String line) {
 		String[] split = line.split("\\s+");
 		if (split.length != sigma.length) {
-			// TODO: abort job
+			throw new RuntimeException("Input vector VS GaussianParams dimensions mismatch!!");
 		}
 		for (int i = 0; i < split.length; i++) {
 			mu[i] = Double.parseDouble(split[i]);
