@@ -34,26 +34,26 @@ public class GaussianParams{
 		/**
 		 * Usato nel reducer.
 		 */
-		double nk=stat.getS0();
-		mu=stat.getS1();
-		sigma=stat.getS2();
-		int d=mu.length; 
+		double nk = stat.getS0();
+		mu = stat.getS1();
+		sigma = stat.getS2();
+		int d = mu.length; 
 		//		if(d!=sigma.length) { 
 		//			throw new Exception("parameters mu and sigma should have the same dimensionality");
 		//			}
 		w=nk/n;
-		for(int dim=0; dim<d; dim++) {
+		for(int dim = 0; dim < d; dim++) {
 			// handle pathological case with too small sigma values
 			if (sigma[dim] < min_sigmaSqr) {
-				sigma[dim]= 10000;
-				mu[dim]=mu[dim]*(2*Math.random()-1);
+				sigma[dim] = 10000;
+				mu[dim] = mu[dim] * (2 * Math.random() - 1);
 				//sigma[dim] = min_sigmaSqr;
 			}
 
 			//TODO controllare che non stia dividendo per zero ..
 
-			if(nk!=0){mu[dim]/=nk;
-			sigma[dim]/=nk;
+			if(nk != 0){mu[dim] /= nk;
+			sigma[dim] /= nk;
 			}
 			else {
 				throw new Exception("caso da risolvere");
@@ -106,7 +106,7 @@ public class GaussianParams{
 			throw new RuntimeException("Input vector VS GaussianParams dimensions mismatch!!");
 		}
 		for (int i = 0; i < split.length; i++) {
-			mu[i] = Double.parseDouble(split[i]);
+			sigma[i] = Double.parseDouble(split[i]);
 		}
 		return;
 	}

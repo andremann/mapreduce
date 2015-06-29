@@ -25,7 +25,7 @@ public class GmmReducer extends Reducer<IntWritable, Stats, Text, Text > {
 		try {
 			theta = new GaussianParams(globalStats,statList.size());
 			String output = String.format("%s \t %s \t %s", theta.getWasString(), theta.getMuAsString(), theta.getSigmaAsString());
-			context.write(new Text(key.toString()), new Text(output));
+			context.write(new Text("Gaussian #" + key.toString()), new Text(output));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

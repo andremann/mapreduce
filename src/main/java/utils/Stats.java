@@ -38,15 +38,15 @@ public class Stats implements Serializable, Writable {
 	 * @param x sample point
 	 */
 	public Stats(double p, double[] mu, double[] x) {
-		int d=x.length;
+		int d = x.length;
 		s0 = p;
 		s1 = new double[d];
 		s2 = new double[d]; 
-		for(int dim=0; dim<d;dim++) {
-			double xdim=x[dim];
-			double xMuDiff=xdim-mu[dim];
-			s1[dim]=p*xdim;
-			s2[dim]=xMuDiff*xMuDiff*p;
+		for(int dim = 0; dim < d; dim++) {
+			double xdim = x[dim];
+			double xMuDiff = xdim - mu[dim];
+			s1[dim] = p * xdim;
+			s2[dim] = xMuDiff * xMuDiff * p;
 				
 		}
 	}
@@ -65,22 +65,20 @@ public class Stats implements Serializable, Writable {
 		 * le statistiche
 		 */
 		
-		int n=statsList.size();
-		int d=statsList.get(0).s1.length;		//TODO inserire controllo che la lista non sia vuota??
-		s0=0;
-		s1=new double[d];
-		s2=new double[d];
+		int n = statsList.size();
+		int d = statsList.get(0).s1.length;		//TODO inserire controllo che la lista non sia vuota??
+		s0 = 0;
+		s1 = new double[d];
+		s2 = new double[d];
 		for(Stats iterStat:statsList) {
-			s0+=iterStat.s0;
-			double [] s1iter=iterStat.s1;
-			double [] s2iter=iterStat.s2;
-			for(int dim=0; dim<d; dim++) {
-				s1[dim]+=s1iter[dim];
-				s2[dim]+=s2iter[dim];
+			s0 += iterStat.s0;
+			double [] s1iter = iterStat.s1;
+			double [] s2iter = iterStat.s2;
+			for(int dim = 0; dim < d; dim++) {
+				s1[dim] += s1iter[dim];
+				s2[dim] += s2iter[dim];
 			}
 		}
-			
-		
 	}
 	
 	public void update(List<Stats> statsList) {
@@ -95,7 +93,7 @@ public class Stats implements Serializable, Writable {
 		 */
 //		Note Lucia:
 //		questo lo eliminerei oppure, se si vuole alleggerire il codice del mapper,
-//		 si pu� definisce un  metodo tipo
+//		 si puó definisce un  metodo tipo
 //		 public Stats[] computeStats(GaussianParams[] params, double[] x){
 //		int k=params.length;
 //		Stats[] stat=new Stats[k];
@@ -105,10 +103,8 @@ public class Stats implements Serializable, Writable {
 //		}
 //		
 //		}
-	
-		
-		
 	}	
+	
 	public double getS0() {
 		return s0;
 	}
@@ -135,14 +131,14 @@ public class Stats implements Serializable, Writable {
 
 	@Override
 	public void readFields(DataInput arg0) throws IOException {
-		s0=arg0.readDouble();
-		s1 = new double [arg0.readInt()];
-		for(int i =0; i<s1.length;++i){
-			s1[i]=arg0.readDouble();
+		s0 = arg0.readDouble();
+		s1 = new double[arg0.readInt()];
+		for(int i = 0; i < s1.length; i++) {
+			s1[i] = arg0.readDouble();
 		}
 		s2 = new double [arg0.readInt()];
-		for(int i =0; i<s2.length;++i){
-			s2[i]=arg0.readDouble();
+		for(int i = 0; i<s2.length; i++) {
+			s2[i] = arg0.readDouble();
 		}
 	}
 
@@ -150,16 +146,12 @@ public class Stats implements Serializable, Writable {
 	public void write(DataOutput arg0) throws IOException {
 		arg0.writeDouble(s0);
 		arg0.writeInt(s1.length);
-		for(int i=0;i<s1.length;++i){
+		for(int i= 0; i < s1.length; i++) {
 			arg0.writeDouble(s1[i]);
 		}
 		arg0.writeInt(s2.length);
-		for(int i=0;i<s2.length;++i){
+		for(int i = 0; i < s2.length; i++) {
 			arg0.writeDouble(s2[i]);
 		}
-		
-		
 	}
-	
-	
 }
