@@ -12,11 +12,9 @@ import utils.GaussianParams;
 import utils.Stats;
 
 
-public class GmmReducer extends Reducer<IntWritable, Stats, Text, GaussianParams > {
+public class GmmReducer extends Reducer<IntWritable, Stats, Text, Text > {
 	@Override
-	protected void reduce(IntWritable key, Iterable<Stats> iterableValues,
-			Reducer<IntWritable, Stats, Text, GaussianParams >.Context context)
-			throws IOException, InterruptedException {
+	protected void reduce(IntWritable key, Iterable<Stats> iterableValues, Reducer<IntWritable, Stats, Text, Text >.Context context) throws IOException, InterruptedException {
 		ArrayList<Stats> statList = new ArrayList <Stats>();
 		Iterator<Stats> it = iterableValues.iterator();
 		while(it.hasNext()){
@@ -26,7 +24,8 @@ public class GmmReducer extends Reducer<IntWritable, Stats, Text, GaussianParams
 		GaussianParams theta;
 		try {
 			theta = new GaussianParams(globalStats,statList.size());
-			context.write(new Text(""), theta);
+			String output = String.format("%s \t %s \t %s", theta.getWasString(), theta.getMuAsString(), theta.getSigmaAsString());
+			context.write(new Text(key.toString()), new Text(output));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

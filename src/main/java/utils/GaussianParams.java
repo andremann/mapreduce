@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.Arrays;
+
 
 
 public class GaussianParams{
@@ -19,32 +21,39 @@ public class GaussianParams{
 		/**
 		 * Usato nel reducer.
 		 */
-		double nk=stat.getS0();
-		mu=stat.getS1();
-		sigma=stat.getS2();
-		int d=mu.length; 
-		if(d!=sigma.length) { 
+		double nk = stat.getS0();
+		mu = stat.getS1();
+		sigma = stat.getS2();
+		int d = mu.length; 
+		if(d != sigma.length) { 
 			throw new Exception("parameters mu and sigma should have the same dimensionality");
-			}
+		}
 		
-		w=nk/n;
-		for(int dim=0; dim<d; dim++) {
-			mu[dim]/=nk;
-			sigma[dim]/=nk;
+		w = nk / n;
+		for(int dim = 0; dim < d; dim++) {
+			mu[dim] /= nk;
+			sigma[dim] /= nk;
 		}		
 	}
 	
 	public double getW() {
 		return w;
 	}
+	
+	public String getWasString() {
+		return String.valueOf(this.getW());
+	}
+	
 	public void setW(double w) {
 		this.w = w;
 	}
+	
 	public double[] getMu() {
 		return mu;
 	}
-	public void setMu(double[] mu) {
-		this.mu = mu;
+	
+	public String getMuAsString() {
+		return vectorToString(this.getMu());
 	}
 	
 	public void setMu(String line) {
@@ -57,11 +66,13 @@ public class GaussianParams{
 		}
 		return;
 	}
+
 	public double[] getSigma() {
 		return sigma;
 	}
-	public void setSigma(double[] sigma) {
-		this.sigma = sigma;
+	
+	public String getSigmaAsString() {
+		return vectorToString(this.getSigma());
 	}
 	
 	public void setSigma(String line) {
@@ -73,6 +84,10 @@ public class GaussianParams{
 			mu[i] = Double.parseDouble(split[i]);
 		}
 		return;
+	}
+	
+	private String vectorToString(double[] v) {
+		return Arrays.toString(v);
 	}
 	
 	/**
