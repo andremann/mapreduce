@@ -3,59 +3,84 @@ package utils;
 import java.util.Arrays;
 
 
-
 public class GaussianParams{
+	/**
+	 * mixture weight: 
+	 * <img src="http://latex.codecogs.com/gif.latex? w \in \mathbb{R} "border="0"/>
+	 */
 	private double w;
+	/**
+	 * Mean
+	 * <img src="http://latex.codecogs.com/gif.latex? \mu \in \mathbb{R}^d "border="0"/>
+	 */
 	private double[] mu;
+	/**
+	 * Variance
+	 * <img src="http://latex.codecogs.com/gif.latex? \sigma \in \mathbb{R}^d "border="0"/>
+	 */
 	private double[] sigma;
-	
-	
+	/** The minimum allowable value for the variances*/
+	static final double min_sigmaSqr = (float) Math.pow(10, -12); // used in GaussianParams(Stats stat, int n) 
+
+
 	public GaussianParams(int d){
 		w = 0;
 		mu = new double[d];
 		sigma = new double[d];
 	}
-	
-	
+
+
 	public GaussianParams(Stats stat, int n) throws Exception{
 		/**
 		 * Usato nel reducer.
 		 */
-		double nk = stat.getS0();
-		mu = stat.getS1();
-		sigma = stat.getS2();
-		int d = mu.length; 
-		if(d != sigma.length) { 
-			throw new Exception("parameters mu and sigma should have the same dimensionality");
-		}
-		
-		w = nk / n;
-		for(int dim = 0; dim < d; dim++) {
-			mu[dim] /= nk;
-			sigma[dim] /= nk;
+		double nk=stat.getS0();
+		mu=stat.getS1();
+		sigma=stat.getS2();
+		int d=mu.length; 
+		//		if(d!=sigma.length) { 
+		//			throw new Exception("parameters mu and sigma should have the same dimensionality");
+		//			}
+		w=nk/n;
+		for(int dim=0; dim<d; dim++) {
+			// handle pathological case with too small sigmaSqr values
+			if (sigma[dim] < min_sigmaSqr) {
+				sigma[dim]= 10000;
+				mu[dim]=mu[dim]*(2*Math.random()-1);
+				//sigma[dim] = min_sigmaSqr;
+			}
+
+			//TODO controllare che non stia dividendo per zero ..
+
+			if(nk!=0){mu[dim]/=nk;
+			sigma[dim]/=nk;
+			}
+			else {
+				throw new Exception("caso da risolvere");
+			}
 		}		
 	}
-	
+
 	public double getW() {
 		return w;
 	}
-	
+
 	public String getWasString() {
 		return String.valueOf(this.getW());
 	}
-	
+
 	public void setW(double w) {
 		this.w = w;
 	}
-	
+
 	public double[] getMu() {
 		return mu;
 	}
-	
+
 	public String getMuAsString() {
 		return vectorToString(this.getMu());
 	}
-	
+
 	public void setMu(String line) {
 		String[] split = line.split("\\s+");
 		if (split.length != mu.length) {
@@ -70,11 +95,11 @@ public class GaussianParams{
 	public double[] getSigma() {
 		return sigma;
 	}
-	
+
 	public String getSigmaAsString() {
 		return vectorToString(this.getSigma());
 	}
-	
+
 	public void setSigma(String line) {
 		String[] split = line.split("\\s+");
 		if (split.length != sigma.length) {
@@ -85,11 +110,11 @@ public class GaussianParams{
 		}
 		return;
 	}
-	
+
 	private String vectorToString(double[] v) {
 		return Arrays.toString(v);
 	}
-	
+
 	/**
 	 * Compute part of the posterior probability related only to the actual gaussian of parameter theta=(w, mu, sigma):<br>
 	 * p is the probability that the object x is assigned to the actual Gaussian <br>
@@ -109,9 +134,9 @@ public class GaussianParams{
 	 * @throws Exception
 	 */
 	public double compute_partial_p(double[] x) {
-	 double p=0;
-	 int d=x.length;
-	 for (int j = 0; j < d; j++) {
+		double p=0;
+		int d=x.length;
+		for (int j = 0; j < d; j++) {
 			double muj = mu[j];
 			double sigmaj = sigma[j];
 			double xMudiff=x[j]-muj;
@@ -120,6 +145,6 @@ public class GaussianParams{
 		p=Math.log(w)-(d*Math.log(2 * Math.PI)+p)/2.0;
 		return p; 	
 	}
-	
+
 
 }
