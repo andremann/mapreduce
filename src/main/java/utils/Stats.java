@@ -44,12 +44,24 @@ public class Stats implements Serializable, Writable {
 		s2 = new double[d]; 
 		for(int dim = 0; dim < d; dim++) {
 			double xdim = x[dim];
-			double xMuDiff = xdim - mu[dim];
 			s1[dim] = p * xdim;
-			s2[dim] = xMuDiff * xMuDiff * p;
+			s2[dim] = s1[dim]*xdim;
 				
 		}
 	}
+//	public Stats(double p, double[] mu, double[] x) {
+//		int d = x.length;
+//		s0 = p;
+//		s1 = new double[d];
+//		s2 = new double[d]; 
+//		for(int dim = 0; dim < d; dim++) {
+//			double xdim = x[dim];
+//			double xMuDiff = xdim - mu[dim];
+//			s1[dim] = p * xdim;
+//			s2[dim] = xMuDiff * xMuDiff * p;
+//				
+//		}
+//	}
 
 	/**
 	 * Aggregate statistics 
