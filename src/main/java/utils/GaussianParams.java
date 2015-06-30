@@ -19,8 +19,9 @@ public class GaussianParams{
 	 * <img src="http://latex.codecogs.com/gif.latex? \sigma \in \mathbb{R}^d "border="0"/>
 	 */
 	private double[] sigma;
+	
 	/** The minimum allowable value for the variances*/
-	static final double min_sigmaSqr = (float) Math.pow(10, -12); // used in GaussianParams(Stats stat, int n) 
+	static final double min_sigmaSqr = Math.pow(10, -10); // used in GaussianParams(Stats stat, int n) 
 
 
 	public GaussianParams(int d){
@@ -38,27 +39,31 @@ public class GaussianParams{
 		mu = stat.getS1();
 		sigma = stat.getS2();
 		int d = mu.length; 
-		//		if(d!=sigma.length) { 
-		//			throw new Exception("parameters mu and sigma should have the same dimensionality");
-		//			}
 		w=nk/n;
-		for(int dim = 0; dim < d; dim++) {
-			// handle pathological case with too small sigma values
-			if (sigma[dim] < min_sigmaSqr) {
-				sigma[dim] = 10000;
+		int nzero=0;
+		if(nk!=0) {
+			for(int dim = 0; dim < d; dim++) {		
+				// handle  too small sigma values
+				if (sigma[dim] < min_sigmaSqr) {
+					sigma[dim] = min_sigmaSqr;
+					nzero++;
+				}
+				mu[dim] /= nk;
+				sigma[dim] /= nk;
+			}	
+
+		}
+		else {
+			throw new Exception("caso da risolvere!!!!");//TODO 
+		}
+			
+		// handle pathological case when a Gaussian component is collapsing
+		if(nzero==d) {
+			for(int dim = 0; dim < d; dim++) {	
+				sigma[dim] = 100;
 				mu[dim] = mu[dim] * (2 * Math.random() - 1);
-				//sigma[dim] = min_sigmaSqr;
 			}
-
-			//TODO controllare che non stia dividendo per zero ..
-
-			if(nk != 0){mu[dim] /= nk;
-			sigma[dim] /= nk;
-			}
-			else {
-				throw new Exception("caso da risolvere");
-			}
-		}		
+		}
 	}
 
 	public double getW() {
