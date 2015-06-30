@@ -18,7 +18,7 @@ public class PosteriorProbability {
 	 * } " border="0"/>
 	 * <p>
 	 * <img src="http://latex.codecogs.com/gif.latex?{
-	 * log (p(i|x, \Theta))= log\left(w_i*p(x|w_i,\mu_i,\sigma_i)\right)- log\left(\sum_{s=1}^k w_s*p(x|w_s,\mu_s,\sigma_s)\right)
+	 * log (p(i|x, \Theta))= log\left(w_i*p(x|w_i,\mu_i,\sigma_i^2)\right)- log\left(\sum_{s=1}^k w_s*p(x|w_s,\mu_s,\sigma_s^2)\right)
 	 * } " border="0"/>
 	 * 
 	 * @param theta parameter of k gaussians

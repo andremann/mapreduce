@@ -16,9 +16,9 @@ public class GaussianParams{
 	private double[] mu;
 	/**
 	 * Variance
-	 * <img src="http://latex.codecogs.com/gif.latex? \sigma \in \mathbb{R}^d "border="0"/>
+	 * <img src="http://latex.codecogs.com/gif.latex? \sigma^2 \in \mathbb{R}^d "border="0"/>
 	 */
-	private double[] sigma;
+	private double[] sigmaSqr;
 	
 	/** The minimum allowable value for the variances*/
 	static final double min_sigmaSqr = Math.pow(10, -10); // used in GaussianParams(Stats stat, int n) 
@@ -27,7 +27,7 @@ public class GaussianParams{
 	public GaussianParams(int d){
 		w = 0;
 		mu = new double[d];
-		sigma = new double[d];
+		sigmaSqr = new double[d];
 	}
 
 
@@ -37,19 +37,19 @@ public class GaussianParams{
 		 */
 		double nk = stat.getS0();
 		mu = stat.getS1();
-		sigma = stat.getS2();
+		sigmaSqr = stat.getS2();
 		int d = mu.length; 
 		w=nk/n;
 		int nzero=0;
 		if(nk!=0) {
 			for(int dim = 0; dim < d; dim++) {		
-				// handle  too small sigma values
-				if (sigma[dim] < min_sigmaSqr) {
-					sigma[dim] = min_sigmaSqr;
+				// handle  too small sigmaSqr values
+				if (sigmaSqr[dim] < min_sigmaSqr) {
+					sigmaSqr[dim] = min_sigmaSqr;
 					nzero++;
 				}
 				mu[dim] /= nk;
-				sigma[dim] /= nk;
+				sigmaSqr[dim] /= nk;
 			}	
 
 		}
@@ -60,7 +60,7 @@ public class GaussianParams{
 		// handle pathological case when a Gaussian component is collapsing
 		if(nzero==d) {
 			for(int dim = 0; dim < d; dim++) {	
-				sigma[dim] = 100;
+				sigmaSqr[dim] = 100;
 				mu[dim] = mu[dim] * (2 * Math.random() - 1);
 			}
 		}
@@ -97,21 +97,21 @@ public class GaussianParams{
 		return;
 	}
 
-	public double[] getSigma() {
-		return sigma;
+	public double[] getSigmaSqr() {
+		return sigmaSqr;
 	}
 
 	public String getSigmaAsString() {
-		return vectorToString(this.getSigma());
+		return vectorToString(this.getSigmaSqr());
 	}
 
 	public void setSigma(String line) {
 		String[] split = line.split("\\s+");
-		if (split.length != sigma.length) {
+		if (split.length != sigmaSqr.length) {
 			throw new RuntimeException("Input vector VS GaussianParams dimensions mismatch!!");
 		}
 		for (int i = 0; i < split.length; i++) {
-			sigma[i] = Double.parseDouble(split[i]);
+			sigmaSqr[i] = Double.parseDouble(split[i]);
 		}
 		return;
 	}
@@ -121,7 +121,7 @@ public class GaussianParams{
 	}
 
 	/**
-	 * Compute part of the posterior probability related only to the actual gaussian of parameter theta=(w, mu, sigma):<br>
+	 * Compute part of the posterior probability related only to the actual gaussian of parameter theta=(w, mu, sigmaSqr):<br>
 	 * p is the probability that the object x is assigned to the actual Gaussian <br>
 	 * p can also viewed as the responsibility that the actual Gaussian takes for
 	 * "explaining" the observation x<br>
@@ -129,9 +129,9 @@ public class GaussianParams{
 	 * All the computation are performed in the log domain
 	 *
 	 * <p>
-	 * <img src="http://latex.codecogs.com/gif.latex?{log(w*p(x|w,\mu,\sigma) )=-\frac{d}{2}\log(2\pi)}+
+	 * <img src="http://latex.codecogs.com/gif.latex?{log(w*p(x|w,\mu,\sigma^2) )=-\frac{d}{2}\log(2\pi)}+
 	 * \log(w)}-
-	 * {\frac{1}{2}\sum_{j=1}^d\left[\log(\sigma_j)+ \dfrac{(x_j-\mu_j)^2}{\sigma_j}\right]
+	 * {\frac{1}{2}\sum_{j=1}^d\left[\log(\sigma_j^2)+ \dfrac{(x_j-\mu_j)^2}{\sigma_j^2}\right]
 	 * } " border="0"/>
 	 * 
 	 * @param x sample point
@@ -143,7 +143,7 @@ public class GaussianParams{
 		int d=x.length;
 		for (int j = 0; j < d; j++) {
 			double muj = mu[j];
-			double sigmaj = sigma[j];
+			double sigmaj = sigmaSqr[j];
 			double xMudiff=x[j]-muj;
 			p+=Math.log(sigmaj)+ (xMudiff*xMudiff)/sigmaj;
 		}

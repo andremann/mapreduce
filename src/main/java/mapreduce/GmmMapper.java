@@ -36,10 +36,6 @@ public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats> {
 		String paramsFilename = conf.getStrings("initParams")[0];
 		GaussianParams[] params = readParamsFromHdfs(paramsFilename, context, k, d);
 
-		/**
-		 * togliere i commenti e testare dopo che si sono completate le funzioni
-		 * di lettura dei parametri
-		 */
 		//compute statistics
 		Stats[] stat = new Stats[k];
 		double[] p = PosteriorProbability.compute_p(params, x); //compute posterior probability
