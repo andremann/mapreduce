@@ -24,12 +24,11 @@ public class GmmReducer extends Reducer<IntWritable, Stats, Text, Text > {
 		GaussianParams theta;
 		try {
 			theta = new GaussianParams(globalStats,statList.size());
-			String output = String.format("%s \t %s \t %s", theta.getWasString(), theta.getMuAsString(), theta.getSigmaAsString());
-			context.write(new Text("Gaussian #" + key.toString()), new Text(output));
+			String output = String.format("%s\n%s\n%s", theta.getWasString(), theta.getMuAsString(), theta.getSigmaAsString());
+			context.write(null, new Text(output));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
 }

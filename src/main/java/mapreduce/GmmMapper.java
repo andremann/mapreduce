@@ -23,6 +23,9 @@ public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats> {
 		Configuration conf = context.getConfiguration();
 
 		int k = conf.getInt("k", -1);
+		if (k <= 0) {
+			throw new RuntimeException("Cannot run GMM for zero Gaussians!");
+		}
 
 		// Parse input vector
 		String[] split = value.toString().split("\\s+");
@@ -34,7 +37,7 @@ public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats> {
 
 		// Load params from hdfs
 		String paramsFilename = conf.getStrings("initParams")[0];
-		GaussianParams[] params = readParamsFromHdfs(paramsFilename, context, k, d);
+		GaussianParams[] params = GaussianParams.ReadParamsFromHdfs(paramsFilename, conf, k, d);
 
 		//compute statistics
 		Stats[] stat = new Stats[k];
@@ -43,53 +46,6 @@ public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats> {
 			stat[i] = new Stats(p[i], params[i].getMu(), x); //compute statistics
 			context.write(new IntWritable(i), stat[i]);
 		}
-
-	}
-
-	/**
-	 * Read from a parameter file structured as follows w_1 mu_1 sigma_1
-	 * (repeat)
-	 * 
-	 * @param filename
-	 * @param k
-	 * @return
-	 * @throws IOException
-	 */
-	private GaussianParams[] readParamsFromHdfs(String filename, Context context, int k, int d) throws IOException {
-		GaussianParams[] params = new GaussianParams[k];
-		for (int i = 0; i < k; i++) {
-			params[i] = new GaussianParams(d);
-		}
-
-		Path pt = new Path(filename);
-		FileSystem fs = FileSystem.get(context.getConfiguration());
-		BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(pt)));
-		try {
-			String line;
-			line = br.readLine();
-			int counter = 0;
-			while (line != null) {
-				int index = counter / 3;
-				switch (counter % 3) {
-				case 0:
-					params[index].setW(Double.parseDouble(line));
-					break;
-				case 1:
-					params[index].setMu(line);
-					break;
-				case 2:
-					params[index].setSigma(line);
-					break;
-				default:
-					break;
-				}
-				counter++;
-				line = br.readLine();
-			}
-		} finally {
-			br.close();
-		}
-		return params;
 	}
 
 }

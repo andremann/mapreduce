@@ -1,6 +1,14 @@
 package utils;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.mapreduce.Mapper.Context;
 
 
 public class GaussianParams{
@@ -80,7 +88,7 @@ Science and Statistics, Springer, 2006.
 		}
 			
 		// handle pathological case when a Gaussian component is collapsing
-		if(nzero==d) {
+		if(nzero == d) {
 			for(int dim = 0; dim < d; dim++) {	
 				sigmaSqr[dim] = 100;
 				mu[dim] = mu[dim] * (2 * Math.random() - 1);
@@ -140,7 +148,11 @@ Science and Statistics, Springer, 2006.
 	}
 
 	public String getMuAsString() {
-		return vectorToString(this.getMu());
+		String outString = "";
+		for (int i = 0; i < mu.length; i++) {
+			outString += mu[i] + " ";
+		}
+		return outString;
 	}
 
 	public void setMu(String line) {
@@ -159,7 +171,11 @@ Science and Statistics, Springer, 2006.
 	}
 
 	public String getSigmaAsString() {
-		return vectorToString(this.getSigmaSqr());
+		String outString = "";
+		for (int i = 0; i < sigmaSqr.length; i++) {
+			outString += sigmaSqr[i] + " ";
+		}
+		return outString;
 	}
 
 	public void setSigma(String line) {
@@ -208,5 +224,50 @@ Science and Statistics, Springer, 2006.
 		return p; 	
 	}
 
+	/**
+	 * Read from a parameter file structured as follows w_1 mu_1 sigma_1
+	 * (repeat)
+	 * 
+	 * @param filename
+	 * @param k
+	 * @return
+	 * @throws IOException
+	 */
+	public static GaussianParams[] ReadParamsFromHdfs(String filename, Configuration conf, int k, int d) throws IOException {
+		GaussianParams[] params = new GaussianParams[k];
+		for (int i = 0; i < k; i++) {
+			params[i] = new GaussianParams(d);
+		}
+
+		Path pt = new Path(filename);
+		FileSystem fs = FileSystem.get(conf);
+		BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(pt)));
+		try {
+			String line;
+			line = br.readLine();
+			int counter = 0;
+			while (line != null) {
+				int index = counter / 3;
+				switch (counter % 3) {
+				case 0:
+					params[index].setW(Double.parseDouble(line));
+					break;
+				case 1:
+					params[index].setMu(line);
+					break;
+				case 2:
+					params[index].setSigma(line);
+					break;
+				default:
+					break;
+				}
+				counter++;
+				line = br.readLine();
+			}
+		} finally {
+			br.close();
+		}
+		return params;
+	}
 
 }
