@@ -30,6 +30,26 @@ public class GaussianParams{
 		sigmaSqr = new double[d];
 	}
 	
+	/**
+	 * Computing the new Gaussian parameters, given the 0-order, 1st-order and 2nd-order statistics.<p>
+	 * It is well know that ML estimation of GMM is a 
+	 * non-convex optimization problem for more that one Gaussian. 
+	 * Hence different initializations might lead to different solutions.
+	 * 
+	*	Also note that some singularity can arise in the likelihood function when 
+	*	a single Gaussian collapses onto a specific data point (see [1] 
+	*	Section 9.2.2 for more details). Then in applying ML to GMM we must take steps
+ 	*	to avoid finding pathological solution. A suitable heuristics  is detecting when 
+ 	*	a Gaussian component is collapsing and resetting its mean  to a randomly chosen 
+ 	*	value while also resetting its covariance to some large value, and then continuing with 
+ 	*	the optimization. 
+ 	*
+ 	*<p>[1] C. M. Bishop, Pattern Recognition and Machine Learning, Information
+Science and Statistics, Springer, 2006.
+	 * @param stat
+	 * @param n
+	 * @throws Exception
+	 */
 	public GaussianParams(Stats stat, int n) throws Exception{
 		/**
 		 * Usato nel reducer.
