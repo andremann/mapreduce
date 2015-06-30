@@ -1,4 +1,6 @@
 package gmm;
+import java.util.Arrays;
+
 import mapreduce.GmmCombiner;
 import mapreduce.GmmMapper;
 import mapreduce.GmmReducer;
@@ -23,7 +25,7 @@ import utils.Stats;
 
 public class Main {
 	private static final int N_REDUCERS = 2;
-	private static final int MAX_ITERATIONS = 2;
+	private static final int MAX_ITERATIONS = 1;
 	private static final double EPSILON = 0.05;
 
 	public static void main(String[] args) throws Exception {
@@ -47,7 +49,7 @@ public class Main {
 		boolean toBeContinued = true;
 		int nIternation = 0;
 		while (toBeContinued && nIternation < MAX_ITERATIONS) {
-			System.err.println("----------ITERATION #" + nIternation);
+			System.err.println("\n------------------------------ITERATION #" + nIternation + "------------------------------");
 			Job job = Job.getInstance(conf, "gmm");
 			job.setJarByClass(Main.class);
 			
@@ -57,7 +59,7 @@ public class Main {
 			job.setMapperClass(GmmMapper.class);
 			
 			job.setMapOutputValueClass(Stats.class);
-			job.setCombinerClass(GmmCombiner.class);
+			//job.setCombinerClass(GmmCombiner.class);
 			job.setReducerClass(GmmReducer.class);
 			job.setNumReduceTasks(N_REDUCERS);
 
@@ -71,6 +73,7 @@ public class Main {
 			
 			// eval escape condition
 			GaussianParams[] oldParams = GaussianParams.ReadParamsFromHdfs(paramsFilename, conf, Integer.parseInt(k), Integer.parseInt(d));
+			System.err.println("\n---OLD---");
 			for (int i = 0; i < oldParams.length; i++) {
 				String output = String.format("%s\n%s\n%s", oldParams[i].getWasString(), oldParams[i].getMuAsString(), oldParams[i].getSigmaAsString());
 				System.err.println(output);
@@ -83,6 +86,7 @@ public class Main {
 			FileUtil.copyMerge(fs, new Path(outputFolder), fs, new Path(paramsFilename), false, conf, null);
 			
 			GaussianParams[] newParams = GaussianParams.ReadParamsFromHdfs(paramsFilename, conf, Integer.parseInt(k), Integer.parseInt(d));
+			System.err.println("---NEW---");
 			for (int i = 0; i < newParams.length; i++) {
 				String output = String.format("%s\n%s\n%s", newParams[i].getWasString(), newParams[i].getMuAsString(), newParams[i].getSigmaAsString());
 				System.err.println(output);
@@ -94,15 +98,12 @@ public class Main {
 			
 			nIternation++;
 		}
-		
 	}
 
 	
 	private static class PartFileFilter implements PathFilter {
-
 		public boolean accept(Path p) {
 			return (p.getName().contains("part-r")?true:false );
 		}
-		
 	}
 }

@@ -123,7 +123,7 @@ Science and Statistics, Springer, 2006.
 		}
 			
 		// handle pathological case when a Gaussian component is collapsing
-		if(nzero==d) {
+		if(nzero == d) {
 			for(int dim = 0; dim < d; dim++) {	
 				sigmaSqr[dim] = 100;
 				mu[dim] = mu[dim] * (2 * Math.random() - 1);
@@ -212,13 +212,13 @@ Science and Statistics, Springer, 2006.
 	 * @throws Exception
 	 */
 	public double compute_partial_p(double[] x) {
-		double p=0;
-		int d=x.length;
+		double p = 0.0;
+		int d = x.length;
 		for (int j = 0; j < d; j++) {
 			double muj = mu[j];
 			double sigmaj = sigmaSqr[j];
-			double xMudiff=x[j]-muj;
-			p+=Math.log(sigmaj)+ (xMudiff*xMudiff)/sigmaj;
+			double xMudiff = x[j] - muj;
+			p += Math.log(sigmaj) + (xMudiff * xMudiff) / sigmaj;
 		}
 		p=Math.log(w)-(d*Math.log(2 * Math.PI)+p)/2.0;
 		return p; 	
