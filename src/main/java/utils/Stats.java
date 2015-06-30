@@ -37,18 +37,6 @@ public class Stats implements Serializable, Writable {
 	 * @param mu mean of the actual gaussian
 	 * @param x sample point
 	 */
-//	public Stats(double p, double[] mu, double[] x) {
-//		int d = x.length;
-//		s0 = p;
-//		s1 = new double[d];
-//		s2 = new double[d]; 
-//		for(int dim = 0; dim < d; dim++) {
-//			double xdim = x[dim];
-//			s1[dim] = p * xdim;
-//			s2[dim] = s1[dim]*xdim;
-//				
-//		}
-//	}
 	public Stats(double p, double[] mu, double[] x) {
 		int d = x.length;
 		s0 = p;
@@ -56,19 +44,31 @@ public class Stats implements Serializable, Writable {
 		s2 = new double[d]; 
 		for(int dim = 0; dim < d; dim++) {
 			double xdim = x[dim];
-			double xMuDiff = xdim - mu[dim];
 			s1[dim] = p * xdim;
-			s2[dim] = xMuDiff * xMuDiff * p;
+			s2[dim] = s1[dim]*xdim;
 				
 		}
 	}
+//	public Stats(double p, double[] mu, double[] x) {
+//		int d = x.length;
+//		s0 = p;
+//		s1 = new double[d];
+//		s2 = new double[d]; 
+//		for(int dim = 0; dim < d; dim++) {
+//			double xdim = x[dim];
+//			double xMuDiff = xdim - mu[dim];
+//			s1[dim] = p * xdim;
+//			s2[dim] = xMuDiff * xMuDiff * p;
+//				
+//		}
+//	}
 
 	/**
 	 * Aggregate statistics 
 	 * 
 	 * @param statsList
 	 */
-	public Stats(List<Stats> statsList){
+ 	public Stats(List<Stats> statsList){
 		//TODO
 		//only for reducer, no combiners
 		/**
