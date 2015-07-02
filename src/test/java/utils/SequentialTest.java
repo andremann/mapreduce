@@ -34,9 +34,8 @@ public class SequentialTest {
 	static int k=2;
 	static int d=3;
 	private static final double EPSILON = 0.05;
-	private static final int MAX_ITERATIONS = 1;
+	private static final int MAX_ITERATIONS = 30;
 
-	@Ignore
 	@Test
 	public void testSeq() throws Exception {
 		System.out.println("\n TESTING: " + this.getClass().getCanonicalName());

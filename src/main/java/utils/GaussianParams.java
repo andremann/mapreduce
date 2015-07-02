@@ -83,14 +83,15 @@ Science and Statistics, Springer, 2006.
 
 		}
 		else {
-			throw new Exception("caso da risolvere!!!!");//TODO 
+			throw new Exception("caso da risolvere!!!!");
 		}
 			
 		// handle pathological case when a Gaussian component is collapsing
 		if(nzero == d) {
+			System.out.println("here!");
 			for(int dim = 0; dim < d; dim++) {	
 				sigmaSqr[dim] = 100;
-				//mu[dim] = mu[dim] * (2 * Math.random() - 1); //TODO scommentare quando si scopre l'arcano
+				mu[dim] = mu[dim] * (2 * Math.random() - 1); //TODO
 			}
 		}
 	}
