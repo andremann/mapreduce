@@ -13,8 +13,8 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
-import org.mortbay.log.Log;
 
+import utils.DimensionsReader;
 import utils.GaussianParams;
 import utils.Stats;
 
@@ -25,20 +25,20 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		
-		if(args.length < 5){
-			System.out.println("Usage program <input_file> <output_folder> <param_file> <k> <d>");
-			return;
-		}
-		// CLI params
-		String inputFilename = args[0];
-		String outputFolder = args[1];
-		String paramsFilename = args[2];
-		String k = args[3];
-		String d = args[4];
+		String inputFilename = "x.txt";
+		String outputFolder = "output";
+		String paramsFilename = "params.txt";
+		String dimensionsFilename = "dimensions.txt";
+		
+		String k ,d;
 		
 		Configuration conf = new Configuration();
+		String[] dimensions = DimensionsReader.ReadDimensionsFromHdfs(dimensionsFilename, conf);
+		k = dimensions[0];
+		d = dimensions[1];
+		
 		conf.setStrings("initParams", paramsFilename);
-		conf.setInt("k", Integer.parseInt(args[3]));
+		conf.setInt("k", Integer.parseInt(k));
 		
 		// iterations
 		boolean toBeContinued = true;
