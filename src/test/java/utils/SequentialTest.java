@@ -19,6 +19,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mortbay.log.Log;
 
@@ -35,6 +36,7 @@ public class SequentialTest {
 	private static final double EPSILON = 0.05;
 	private static final int MAX_ITERATIONS = 1;
 
+	@Ignore
 	@Test
 	public void testSeq() throws Exception {
 		System.out.println("\n TESTING: " + this.getClass().getCanonicalName());
@@ -60,7 +62,7 @@ public class SequentialTest {
 					GaussianParams test = new GaussianParams(d);
 					test.setW(stat[i][s].getS0());
 					test.setMu(stat[i][s].getS1());
-					test.setSigma(stat[i][s].getS2());
+					test.setSigmaSqr(stat[i][s].getS2());
 					
 					//System.out.println(String.format("%s\n%s\n%s", test.getWasString(), test.getMuAsString(), test.getSigmaAsString()));
 					
@@ -80,7 +82,7 @@ public class SequentialTest {
 				GaussianParams test = new GaussianParams(globalStats.getS1().length);
 				test.setW(globalStats.getS0());
 				test.setMu(globalStats.getS1());
-				test.setSigma(globalStats.getS2());
+				test.setSigmaSqr(globalStats.getS2());
 				System.out.println(String.format("%s\n%s\n%s", test.getWasString(), test.getMuAsString(), test.getSigmaSqrAsString()));
 				
 				newParams[i] = new GaussianParams(globalStats, statList.size());
