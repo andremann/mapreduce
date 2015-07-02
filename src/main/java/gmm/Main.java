@@ -1,13 +1,8 @@
 package gmm;
-import java.util.Arrays;
-
-import mapreduce.GmmCombiner;
 import mapreduce.GmmMapper;
 import mapreduce.GmmReducer;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FSDataOutputStream;
-import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
@@ -18,7 +13,6 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
-import org.apache.hadoop.util.Shell;
 
 import utils.GaussianParams;
 import utils.Stats;
@@ -76,6 +70,7 @@ public class Main {
 			System.err.println("\n---OLD---");
 			for (int i = 0; i < oldParams.length; i++) {
 				String output = String.format("%s\n%s\n%s", oldParams[i].getWasString(), oldParams[i].getMuAsString(), oldParams[i].getSigmaAsString());
+				System.err.println("Gaussian"+i);
 				System.err.println(output);
 			}
 			
@@ -89,6 +84,7 @@ public class Main {
 			System.err.println("---NEW---");
 			for (int i = 0; i < newParams.length; i++) {
 				String output = String.format("%s\n%s\n%s", newParams[i].getWasString(), newParams[i].getMuAsString(), newParams[i].getSigmaAsString());
+				System.err.println("Gaussian"+i);
 				System.err.println(output);
 			}
 			

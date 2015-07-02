@@ -22,7 +22,8 @@ import java.util.ArrayList;
  * @author Lucia
  *
  */
-public class prova {
+public class provaLuciaDaEliminareQuandoTuttoFunzionera {
+	//TODO cambiare parfile e xfile prima di eseguire
 	static String parfile="C:\\Users\\Lucia\\SkyDrive\\UNI\\cloudComp\\project\\mapreduce\\src\\main\\resources\\params.txt";
 	static String xfile="C:\\Users\\Lucia\\SkyDrive\\UNI\\cloudComp\\project\\mapreduce\\src\\main\\resources\\x.txt";
 	static int k=2;
@@ -69,11 +70,13 @@ public class prova {
 			System.err.println("\n---OLD---");
 			for (int i = 0; i < oldParams.length; i++) {
 				String output = String.format("%s\n%s\n%s", oldParams[i].getWasString(), oldParams[i].getMuAsString(), oldParams[i].getSigmaAsString());
+				System.err.println("Gaussian"+i);
 				System.err.println(output);
 			}
 			System.err.println("---NEW---");
 			for (int i = 0; i < newParams.length; i++) {
 				String output = String.format("%s\n%s\n%s", newParams[i].getWasString(), newParams[i].getMuAsString(), newParams[i].getSigmaAsString());
+				System.err.println("Gaussian"+i);
 				System.err.println(output);
 			}
 
