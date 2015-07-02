@@ -1,6 +1,5 @@
 
 package utils;
-
  
 public class PosteriorProbability {
 	/**
@@ -26,19 +25,19 @@ public class PosteriorProbability {
 	 * @return posterior probabilities vector
 	 * @throws Exception
 	 */
-	public static final double[] compute_p(GaussianParams[] theta,double[] x) {
-		int k=theta.length;
-		if(k>0) {
-			double[] p=new double[k];
-			p[0]=theta[0].compute_partial_p(x);
-			double tmp_logSum=p[0];
+	public static final double[] compute_p(GaussianParams[] theta, double[] x) {
+		int k = theta.length;
+		if(k > 0) {
+			double[] p = new double[k];
+			p[0] = theta[0].compute_partial_p(x);
+			double tmp_logSum = p[0];
 
-			for(int i=1; i<k; i++) {
-				p[i]=theta[i].compute_partial_p(x);
-				tmp_logSum=log_sum(tmp_logSum, p[i]);
+			for(int i = 1; i < k; i++) {
+				p[i] = theta[i].compute_partial_p(x);
+				tmp_logSum = log_sum(tmp_logSum, p[i]);
 			}
 
-			for(int i=0; i<k; i++) {
+			for(int i = 0; i < k; i++) {
 				p[i] = Math.exp(p[i] - tmp_logSum);
 			}
 			return p; 	

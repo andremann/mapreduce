@@ -4,9 +4,12 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.hadoop.io.Writable;
+import org.mortbay.log.Log;
 
 public class Stats implements Serializable, Writable {
 
@@ -78,19 +81,55 @@ public class Stats implements Serializable, Writable {
 		 */
 		
 		int n = statsList.size();
+		Log.info("" + n);
 		int d = statsList.get(0).s1.length;		//TODO inserire controllo che la lista non sia vuota??
 		s0 = 0;
 		s1 = new double[d];
 		s2 = new double[d];
-		for(Stats iterStat:statsList) {
+		for(Stats iterStat : statsList) {
+			Log.info(iterStat.toString());
 			s0 += iterStat.s0;
+			Log.info(String.valueOf(iterStat.s0));
 			double [] s1iter = iterStat.s1;
+			Log.info(Arrays.toString(s1iter));
 			double [] s2iter = iterStat.s2;
+			Log.info(Arrays.toString(s2iter));
 			for(int dim = 0; dim < d; dim++) {
 				s1[dim] += s1iter[dim];
 				s2[dim] += s2iter[dim];
 			}
 		}
+	}
+ 	
+	/**
+	 * Aggregate statistics 
+	 * 
+	 * @param statsList
+	 */
+ 	public Stats(Iterable<Stats> iterableValues){
+ 		Iterator<Stats> statsIterator = iterableValues.iterator();
+ 		boolean initialize = true;
+ 		while (statsIterator.hasNext()) {
+ 			Stats next = statsIterator.next();
+ 			int d = next.getS1().length;
+ 			if (initialize) {
+ 				s0 = 0;
+ 				s1 = new double[d];
+ 				s2 = new double[d];
+ 				initialize = false;
+ 			}
+ 			Log.info(next.toString());
+			s0 += next.s0;
+			Log.info(String.valueOf(next.s0));
+			double [] s1iter = next.s1;
+			Log.info(Arrays.toString(s1iter));
+			double [] s2iter = next.s2;
+			Log.info(Arrays.toString(s2iter));
+			for(int dim = 0; dim < d; dim++) {
+				s1[dim] += s1iter[dim];
+				s2[dim] += s2iter[dim];
+			}
+ 		}
 	}
 	
 	public void update(List<Stats> statsList) {

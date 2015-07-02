@@ -19,6 +19,6 @@ public class GmmCombiner extends Reducer<IntWritable, Stats, IntWritable, Stats>
 		};
 		Stats globalStats = new Stats(statList);
 		context.write(key, globalStats);
-		System.err.println("Combiner here!!");
+		System.out.println("Combiner here!!");
 	}
 }

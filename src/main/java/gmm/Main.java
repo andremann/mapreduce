@@ -13,19 +13,20 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+import org.mortbay.log.Log;
 
 import utils.GaussianParams;
 import utils.Stats;
 
 public class Main {
-	private static final int N_REDUCERS = 2;
-	private static final int MAX_ITERATIONS = 1;
+	private static final int N_REDUCERS = 1;
+	private static final int MAX_ITERATIONS = 2;
 	private static final double EPSILON = 0.05;
 
 	public static void main(String[] args) throws Exception {
 		
 		if(args.length < 5){
-			System.err.println("Usage program <input_file> <output_folder> <param_file> <k> <d>");
+			System.out.println("Usage program <input_file> <output_folder> <param_file> <k> <d>");
 			return;
 		}
 		// CLI params
@@ -43,7 +44,7 @@ public class Main {
 		boolean toBeContinued = true;
 		int nIternation = 0;
 		while (toBeContinued && nIternation < MAX_ITERATIONS) {
-			System.err.println("\n------------------------------ITERATION #" + nIternation + "------------------------------");
+			System.out.println("\n------------------------------ITERATION #" + nIternation + "------------------------------");
 			Job job = Job.getInstance(conf, "gmm");
 			job.setJarByClass(Main.class);
 			
@@ -67,11 +68,10 @@ public class Main {
 			
 			// eval escape condition
 			GaussianParams[] oldParams = GaussianParams.ReadParamsFromHdfs(paramsFilename, conf, Integer.parseInt(k), Integer.parseInt(d));
-			System.err.println("\n---OLD---");
+			System.out.println("\n---OLD---");
 			for (int i = 0; i < oldParams.length; i++) {
-				String output = String.format("%s\n%s\n%s", oldParams[i].getWasString(), oldParams[i].getMuAsString(), oldParams[i].getSigmaAsString());
-				System.err.println("Gaussian"+i);
-				System.err.println(output);
+				String output = String.format("%s\n%s\n%s", oldParams[i].getWasString(), oldParams[i].getMuAsString(), oldParams[i].getSigmaSqrAsString());
+				System.out.println("Gaussian #" + i + "\n" + output);
 			}
 			
 			
@@ -81,11 +81,10 @@ public class Main {
 			FileUtil.copyMerge(fs, new Path(outputFolder), fs, new Path(paramsFilename), false, conf, null);
 			
 			GaussianParams[] newParams = GaussianParams.ReadParamsFromHdfs(paramsFilename, conf, Integer.parseInt(k), Integer.parseInt(d));
-			System.err.println("---NEW---");
+			System.out.println("\n---NEW---");
 			for (int i = 0; i < newParams.length; i++) {
-				String output = String.format("%s\n%s\n%s", newParams[i].getWasString(), newParams[i].getMuAsString(), newParams[i].getSigmaAsString());
-				System.err.println("Gaussian"+i);
-				System.err.println(output);
+				String output = String.format("%s\n%s\n%s", newParams[i].getWasString(), newParams[i].getMuAsString(), newParams[i].getSigmaSqrAsString());
+				System.out.println("Gaussian #" + i + "\n" + output);
 			}
 			
 			toBeContinued = GaussianParams.evaluateStop(oldParams, newParams, EPSILON);
@@ -99,7 +98,7 @@ public class Main {
 	
 	private static class PartFileFilter implements PathFilter {
 		public boolean accept(Path p) {
-			return (p.getName().contains("part-r")?true:false );
+			return (p.getName().contains("part-r") ? true : false);
 		}
 	}
 }

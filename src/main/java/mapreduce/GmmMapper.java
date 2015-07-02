@@ -30,7 +30,7 @@ public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats> {
 		}
 
 		// Parse input vector
-		//Log.info("input line: " + value.toString());
+		Log.info("input vector: " + value.toString());
 		String[] split = value.toString().split("\\s+");
 		int d = split.length;
 		double[] x = new double[d];
@@ -47,8 +47,12 @@ public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats> {
 		for (int i = 0; i < k; i++) {
 			stat[i] = new Stats(p[i], params[i].getMu(), x); //compute statistics
 			context.write(new IntWritable(i), stat[i]);
-			//Log.info(String.format("%s\n%s\n%s", params[i].getWasString(), params[i].getMuAsString(), params[i].getSigmaAsString()));
-
+			// GaussianParams test = new GaussianParams(d);
+			// test.setW(stat[i].getS0());
+			// test.setMu(stat[i].getS1());
+			// test.setSigma(stat[i].getS2());
+			// System.out.println(String.format("\nW: %s\nmu: %s\nsigma: %s", test.getWasString(),
+			// test.getMuAsString(), test.getSigmaAsString()));
 		}
 	}
 

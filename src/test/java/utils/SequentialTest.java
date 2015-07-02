@@ -17,26 +17,32 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.junit.Test;
+import org.mortbay.log.Log;
 
 /**
  * @author Lucia
  *
  */
-public class provaLuciaDaEliminareQuandoTuttoFunzionera {
+public class SequentialTest {
 	//TODO cambiare parfile e xfile prima di eseguire
-	static String parfile="C:\\Users\\Lucia\\SkyDrive\\UNI\\cloudComp\\project\\mapreduce\\src\\main\\resources\\params.txt";
-	static String xfile="C:\\Users\\Lucia\\SkyDrive\\UNI\\cloudComp\\project\\mapreduce\\src\\main\\resources\\x.txt";
+	static String parfile="/Users/andrea/git/mapreduce/src/main/resources/params.txt";
+	static String xfile="/Users/andrea/git/mapreduce/src/main/resources/x.txt";
 	static int k=2;
 	static int d=3;
 	private static final double EPSILON = 0.05;
-	private static final int MAX_ITERATIONS = 100;
+	private static final int MAX_ITERATIONS = 1;
 
-	public static void main(String[] args) throws Exception {
-		GaussianParams[] oldParams= readParams(parfile);
-		GaussianParams[] newParams=oldParams ;
-		double[][] x =readx(xfile);
-		System.out.println("prova");
-		int n=x.length;
+	@Test
+	public void testSeq() throws Exception {
+		System.out.println("\n TESTING: " + this.getClass().getCanonicalName());
+		
+		GaussianParams[] oldParams = readParams(parfile);
+		GaussianParams[] newParams = oldParams ;
+		double[][] x = readx(xfile);
+		int n = x.length;
 
 		boolean toBeContinued = true;
 		int nIternation = 0;
@@ -48,36 +54,50 @@ public class provaLuciaDaEliminareQuandoTuttoFunzionera {
 			for(int s=0; s<n;s++) {
 				double[] xs=x[s];
 				double[] p = PosteriorProbability.compute_p(oldParams, xs); //compute posterior probability
+				System.out.println(Arrays.toString(xs));
 				for (int i = 0; i < k; i++) {
 					stat[i][s] = new Stats(p[i], oldParams[i].getMu(), xs); //compute statistic
-					//Log.info(String.format("%s\n%s\n%s", params[i].getWasString(), params[i].getMuAsString(), params[i].getSigmaAsString()));
+					GaussianParams test = new GaussianParams(d);
+					test.setW(stat[i][s].getS0());
+					test.setMu(stat[i][s].getS1());
+					test.setSigma(stat[i][s].getS2());
+					
+					//System.out.println(String.format("%s\n%s\n%s", test.getWasString(), test.getMuAsString(), test.getSigmaAsString()));
+					
 				}
 			}
 			//reducer 
 			//aggrego per chiave
-			 newParams=new GaussianParams[k];
-			for(int i=0; i<k; i++) {
+			newParams=new GaussianParams[k];
+			for(int i = 0; i < k; i++) {
+				System.out.println(i);
 				Stats[] statI=stat[i];
 				ArrayList<Stats> statList= new ArrayList <Stats>();
 				for(Stats onestat:statI) {
 					statList.add(onestat);
 				}
 				Stats globalStats = new Stats(statList);
+				GaussianParams test = new GaussianParams(globalStats.getS1().length);
+				test.setW(globalStats.getS0());
+				test.setMu(globalStats.getS1());
+				test.setSigma(globalStats.getS2());
+				System.out.println(String.format("%s\n%s\n%s", test.getWasString(), test.getMuAsString(), test.getSigmaSqrAsString()));
+				
 				newParams[i] = new GaussianParams(globalStats, statList.size());
 
 			}
 
-			System.err.println("\n---OLD---");
+			System.out.println("\n---OLD---");
 			for (int i = 0; i < oldParams.length; i++) {
-				String output = String.format("%s\n%s\n%s", oldParams[i].getWasString(), oldParams[i].getMuAsString(), oldParams[i].getSigmaAsString());
-				System.err.println("Gaussian"+i);
-				System.err.println(output);
+				String output = String.format("%s\n%s\n%s", oldParams[i].getWasString(), oldParams[i].getMuAsString(), oldParams[i].getSigmaSqrAsString());
+				System.out.println("Gaussian"+i);
+				System.out.println(output);
 			}
-			System.err.println("---NEW---");
+			System.out.println("---NEW---");
 			for (int i = 0; i < newParams.length; i++) {
-				String output = String.format("%s\n%s\n%s", newParams[i].getWasString(), newParams[i].getMuAsString(), newParams[i].getSigmaAsString());
-				System.err.println("Gaussian"+i);
-				System.err.println(output);
+				String output = String.format("%s\n%s\n%s", newParams[i].getWasString(), newParams[i].getMuAsString(), newParams[i].getSigmaSqrAsString());
+				System.out.println("Gaussian"+i);
+				System.out.println(output);
 			}
 
 			toBeContinued = GaussianParams.evaluateStop(oldParams, newParams, EPSILON);
@@ -110,7 +130,7 @@ public class provaLuciaDaEliminareQuandoTuttoFunzionera {
 					params[index].setMu(line);
 					break;
 				case 2:
-					params[index].setSigma(line);
+					params[index].setSigmaSqr(line);
 					break;
 				default:
 					break;

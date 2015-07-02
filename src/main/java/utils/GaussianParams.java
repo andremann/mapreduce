@@ -90,7 +90,7 @@ Science and Statistics, Springer, 2006.
 		if(nzero == d) {
 			for(int dim = 0; dim < d; dim++) {	
 				sigmaSqr[dim] = 100;
-				mu[dim] = mu[dim] * (2 * Math.random() - 1);
+				//mu[dim] = mu[dim] * (2 * Math.random() - 1); //TODO scommentare quando si scopre l'arcano
 			}
 		}
 	}
@@ -164,12 +164,16 @@ Science and Statistics, Springer, 2006.
 		}
 		return;
 	}
+	
+	public void setMu(double[] mu) {
+		this.mu = mu; 
+	}
 
 	public double[] getSigmaSqr() {
 		return sigmaSqr;
 	}
 
-	public String getSigmaAsString() {
+	public String getSigmaSqrAsString() {
 		String outString = "";
 		for (int i = 0; i < sigmaSqr.length; i++) {
 			outString += sigmaSqr[i] + " ";
@@ -177,7 +181,7 @@ Science and Statistics, Springer, 2006.
 		return outString;
 	}
 
-	public void setSigma(String line) {
+	public void setSigmaSqr(String line) {
 		String[] split = line.split("\\s+");
 		if (split.length != sigmaSqr.length) {
 			throw new RuntimeException("Input vector VS GaussianParams dimensions mismatch!!");
@@ -219,7 +223,7 @@ Science and Statistics, Springer, 2006.
 			double xMudiff = x[j] - muj;
 			p += Math.log(sigmaj) + (xMudiff * xMudiff) / sigmaj;
 		}
-		p=Math.log(w)-(d*Math.log(2 * Math.PI)+p)/2.0;
+		p = Math.log(w) - (d*Math.log(2 * Math.PI) + p) / 2.0;
 		return p; 	
 	}
 
@@ -233,14 +237,18 @@ Science and Statistics, Springer, 2006.
 	 * @throws IOException
 	 */
 	public static GaussianParams[] ReadParamsFromHdfs(String filename, Configuration conf, int k, int d) throws IOException {
+		Path pt = new Path(filename);
+		FileSystem fs = FileSystem.get(conf);
+		return parse(new InputStreamReader(fs.open(pt)), k, d);
+	}
+	
+	public static GaussianParams[] parse(InputStreamReader reader, int k, int d) throws IOException {
 		GaussianParams[] params = new GaussianParams[k];
 		for (int i = 0; i < k; i++) {
 			params[i] = new GaussianParams(d);
 		}
-
-		Path pt = new Path(filename);
-		FileSystem fs = FileSystem.get(conf);
-		BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(pt)));
+		
+		BufferedReader br = new BufferedReader(reader);
 		try {
 			String line;
 			line = br.readLine();
@@ -255,7 +263,7 @@ Science and Statistics, Springer, 2006.
 					params[index].setMu(line);
 					break;
 				case 2:
-					params[index].setSigma(line);
+					params[index].setSigmaSqr(line);
 					break;
 				default:
 					break;
@@ -280,8 +288,13 @@ Science and Statistics, Springer, 2006.
 			}
 		}
 		norm = Math.sqrt(norm);
-		System.out.println("Norm >>> " + norm);
+		System.out.println("\n ----NORM----\n" + norm);
 		return norm > epsilon;
+	}
+
+	public void setSigma(double[] sigma) {
+		// TODO Auto-generated method stub
+		this.sigmaSqr = sigma;
 	}
 
 }
