@@ -20,7 +20,7 @@ import utils.Stats;
 
 public class Main {
 	private static final int N_REDUCERS = 1;
-	private static final int MAX_ITERATIONS = 2;
+	private static final int MAX_ITERATIONS = 10;
 	private static final double EPSILON = 0.05;
 
 	public static void main(String[] args) throws Exception {
@@ -93,6 +93,7 @@ public class Main {
 			
 			nIternation++;
 		}
+		System.out.println("Program exited. Reason:\n \t-enough approximation: " + !toBeContinued + "\n \t-max iterations exceeded: " + !(nIternation < MAX_ITERATIONS));
 	}
 
 	
