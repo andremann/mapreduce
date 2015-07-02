@@ -292,9 +292,9 @@ Science and Statistics, Springer, 2006.
 		return norm > epsilon;
 	}
 
-	public void setSigma(double[] sigma) {
+	public void setSigmaSqr(double[] sigmaSqr) {
 		// TODO Auto-generated method stub
-		this.sigmaSqr = sigma;
+		this.sigmaSqr = sigmaSqr;
 	}
 
 }
