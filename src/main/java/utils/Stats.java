@@ -4,17 +4,15 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.hadoop.io.Writable;
-import org.mortbay.log.Log;
 
 public class Stats implements Serializable, Writable {
 
 	private static final long serialVersionUID = 1295187155052274275L;
-	
+	private int n; //number of point used in the generation of statistics 
 	private double s0;
 	private double[] s1;
 	private double[] s2;
@@ -24,11 +22,14 @@ public class Stats implements Serializable, Writable {
 	/**
 	 * Usato durante la fase di (de)serializzazione
 	 */
+		
+		n=0;
 		s0 = 0;
 		s1 = null;
 		s2 = null;
 	}
 	public Stats(int d) {
+		n=0;
 		s0 = 0;
 		s1 = new double[d];
 		s2 = new double[d];
@@ -42,6 +43,7 @@ public class Stats implements Serializable, Writable {
 	 */
 	public Stats(double p, double[] mu, double[] x) {
 		int d = x.length;
+		n+=1;
 		s0 = p;
 		s1 = new double[d];
 		s2 = new double[d]; 
@@ -80,12 +82,13 @@ public class Stats implements Serializable, Writable {
 		 * le statistiche
 		 */
 		
-		int n = statsList.size();
-		int d = statsList.get(0).s1.length;		//TODO inserire controllo che la lista non sia vuota??
+		int d = statsList.get(0).s1.length;		
+		n=0;
 		s0 = 0;
 		s1 = new double[d];
 		s2 = new double[d];
 		for(Stats iterStat : statsList) {
+			n+=iterStat.n;
 			s0 += iterStat.s0;
 			double [] s1iter = iterStat.s1;
 			double [] s2iter = iterStat.s2;
@@ -108,11 +111,13 @@ public class Stats implements Serializable, Writable {
  			Stats next = statsIterator.next();
  			int d = next.getS1().length;
  			if (initialize) {
+ 				n=0;
  				s0 = 0;
  				s1 = new double[d];
  				s2 = new double[d];
  				initialize = false;
  			}
+ 			n+=next.n;
 			s0 += next.s0;
 			double [] s1iter = next.s1;
 			double [] s2iter = next.s2;
@@ -123,33 +128,19 @@ public class Stats implements Serializable, Writable {
  		}
 	}
 	
-	public void update(List<Stats> statsList) {
-		/*TODO*/
-	} 
+//	public void update(List<Stats> statsList) {
+//		/*TODO*/
+//	} 
 	
-	public void update (GaussianParams[] params){
-		//TODO
-		/**
-		 * Metodo che ricalcola le statistiche a partire
-		 * da un vettore di parametri gaussiani
-		 */
-//		Note Lucia:
-//		questo lo eliminerei oppure, se si vuole alleggerire il codice del mapper,
-//		 si puó definisce un  metodo tipo
-//		 public Stats[] computeStats(GaussianParams[] params, double[] x){
-//		int k=params.length;
-//		Stats[] stat=new Stats[k];
-//		double[] p =PosteriorProbability.compute_p(params, x);//compute posterior probability
-//		for(int i=0; i<k; i++) {
-//			stat[i]=new Stats(p[i], params[i].getMu(), x); //compute statistics
-//		}
-//		
-//		}
-	}	
+
+	public int getN() {
+		return n;
+	}
+
 	
 	public double getS0() {
 		return s0;
-	}
+	} 
 
 	public void setS0(double s0) {
 		this.s0 = s0;
@@ -173,6 +164,7 @@ public class Stats implements Serializable, Writable {
 
 	@Override
 	public void readFields(DataInput arg0) throws IOException {
+		n=arg0.readInt();
 		s0 = arg0.readDouble();
 		s1 = new double[arg0.readInt()];
 		for(int i = 0; i < s1.length; i++) {
@@ -186,6 +178,7 @@ public class Stats implements Serializable, Writable {
 
 	@Override
 	public void write(DataOutput arg0) throws IOException {
+		arg0.writeInt(n);
 		arg0.writeDouble(s0);
 		arg0.writeInt(s1.length);
 		for(int i= 0; i < s1.length; i++) {
@@ -196,4 +189,5 @@ public class Stats implements Serializable, Writable {
 			arg0.writeDouble(s2[i]);
 		}
 	}
+
 }

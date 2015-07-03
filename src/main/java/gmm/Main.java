@@ -25,13 +25,12 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		
-		String inputFilename = "x.txt";
+		String inputFilename ="x.txt";
 		String outputFolder = "output";
 		String paramsFilename = "params.txt";
 		String dimensionsFilename = "dimensions.txt";
 		
-		String k ,d;
-		
+		String k ,d;		
 		Configuration conf = new Configuration();
 		String[] dimensions = DimensionsReader.ReadDimensionsFromHdfs(dimensionsFilename, conf);
 		k = dimensions[0];
@@ -43,6 +42,8 @@ public class Main {
 		// iterations
 		boolean toBeContinued = true;
 		int nIternation = 0;
+		System.out.println("Convergence threshold: " + EPSILON);
+		System.out.println("Max number of iterations: " + MAX_ITERATIONS);
 		while (toBeContinued && nIternation < MAX_ITERATIONS) {
 			System.out.println("\n------------------------------ITERATION #" + nIternation + "------------------------------");
 			Job job = Job.getInstance(conf, "gmm");
@@ -54,7 +55,7 @@ public class Main {
 			job.setMapperClass(GmmMapper.class);
 			
 			job.setMapOutputValueClass(Stats.class);
-			//job.setCombinerClass(GmmCombiner.class);
+		//	job.setCombinerClass(GmmCombiner.class);
 			job.setReducerClass(GmmReducer.class);
 			job.setNumReduceTasks(N_REDUCERS);
 
@@ -68,11 +69,11 @@ public class Main {
 			
 			// eval escape condition
 			GaussianParams[] oldParams = GaussianParams.ReadParamsFromHdfs(paramsFilename, conf, Integer.parseInt(k), Integer.parseInt(d));
-			System.out.println("\n---OLD---");
-			for (int i = 0; i < oldParams.length; i++) {
-				String output = String.format("%s\n%s\n%s", oldParams[i].getWasString(), oldParams[i].getMuAsString(), oldParams[i].getSigmaSqrAsString());
-				System.out.println("Gaussian #" + i + "\n" + output);
-			}
+//			System.out.println("\n---OLD---");
+//			for (int i = 0; i < oldParams.length; i++) {
+//				String output = String.format("%s\n%s\n%s", oldParams[i].getWasString(), oldParams[i].getMuAsString(), oldParams[i].getSigmaSqrAsString());
+//				System.out.println("Gaussian #" + i + "\n" + output);
+//			}
 			
 			
 			FileSystem fs = FileSystem.get(conf);
@@ -81,11 +82,11 @@ public class Main {
 			FileUtil.copyMerge(fs, new Path(outputFolder), fs, new Path(paramsFilename), false, conf, null);
 			
 			GaussianParams[] newParams = GaussianParams.ReadParamsFromHdfs(paramsFilename, conf, Integer.parseInt(k), Integer.parseInt(d));
-			System.out.println("\n---NEW---");
-			for (int i = 0; i < newParams.length; i++) {
-				String output = String.format("%s\n%s\n%s", newParams[i].getWasString(), newParams[i].getMuAsString(), newParams[i].getSigmaSqrAsString());
-				System.out.println("Gaussian #" + i + "\n" + output);
-			}
+//			System.out.println("\n---NEW---");
+//			for (int i = 0; i < newParams.length; i++) {
+//				String output = String.format("%s\n%s\n%s", newParams[i].getWasString(), newParams[i].getMuAsString(), newParams[i].getSigmaSqrAsString());
+//				System.out.println("Gaussian #" + i + "\n" + output);
+//			}
 			
 			toBeContinued = GaussianParams.evaluateStop(oldParams, newParams, EPSILON);
 			

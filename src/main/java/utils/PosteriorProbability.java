@@ -1,7 +1,7 @@
 
 package utils;
  
-public class PosteriorProbability {
+public class PosteriorProbability { 
 	/**
 	 * Compute posterior probability:<br>
 	 * p[i] is the probability that the object x is assigned

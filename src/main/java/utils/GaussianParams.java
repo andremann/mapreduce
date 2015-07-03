@@ -88,7 +88,7 @@ Science and Statistics, Springer, 2006.
 			
 		// handle pathological case when a Gaussian component is collapsing
 		if(nzero == d) {
-			System.out.println("here!");
+			//System.out.println("here!");
 			for(int dim = 0; dim < d; dim++) {	
 				sigmaSqr[dim] = 100;
 				mu[dim] = mu[dim] * (2 * Math.random() - 1); //TODO
@@ -288,8 +288,8 @@ Science and Statistics, Springer, 2006.
 				norm += diff * diff;
 			}
 		}
-		norm = Math.sqrt(norm);
-		System.out.println("\n ----NORM----\n" + norm);
+		norm = Math.sqrt(norm); 
+		System.out.println("\nNORM(muOld - muNew)\n" + norm);
 		return norm > epsilon;
 	}
 

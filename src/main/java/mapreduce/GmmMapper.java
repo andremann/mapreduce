@@ -1,13 +1,8 @@
 package mapreduce;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -29,7 +24,7 @@ public class GmmMapper extends Mapper<Object, Text, IntWritable, Stats> {
 			throw new RuntimeException("Cannot run GMM for zero Gaussians!");
 		}
 
-		// Parse input vector
+		// Parse input vector 
 		Log.info("input vector: " + value.toString());
 		String[] split = value.toString().split("\\s+");
 		int d = split.length;

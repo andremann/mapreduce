@@ -1,14 +1,3 @@
-/*******************************************************************************
- * Copyright (c) 2013, Lucia Vadicamo (NeMIS Lab., ISTI-CNR, Italy)
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met: 
- * 
- * 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. 
- * 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. 
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- ******************************************************************************/
 package utils;
 
 import java.io.BufferedReader;
@@ -17,28 +6,31 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import org.junit.Ignore;
 import org.junit.Test;
-import org.mortbay.log.Log;
-
 /**
  * @author Lucia
  *
  */
-public class SequentialTest {
+public class SequentialTest { 
+	public static int  maxNFeatures=10000;
 	//TODO cambiare parfile e xfile prima di eseguire
-	static String parfile="/Users/andrea/git/mapreduce/src/main/resources/params.txt";
-	static String xfile="/Users/andrea/git/mapreduce/src/main/resources/x.txt";
-	static int k=2;
-	static int d=3;
+	static String parfile="C:\\Users\\Lucia\\SkyDrive\\UNI\\cloudComp\\project\\mapreduce\\src\\main\\resources\\ParametriGMM_INRIA_HOLIDAYS\\kMeans-k64_INRIA-Holidays.txt";
+			//"/Users/andrea/git/mapreduce/src/main/resources/params.txt";
+	static String xfile="C:\\Users\\Lucia\\SkyDrive\\UNI\\cloudComp\\project\\mapreduce\\src\\main\\resources\\ParametriGMM_INRIA_HOLIDAYS\\INRIA_dataset_SIFTs"+maxNFeatures+"LF.txt";
+	//"/Users/andrea/git/mapreduce/src/main/resources/x.txt";
+	static String dimfile="C:\\Users\\Lucia\\SkyDrive\\UNI\\cloudComp\\project\\mapreduce\\src\\main\\resources\\ParametriGMM_INRIA_HOLIDAYS\\dimensions.txt";
+	static int k=64;
+	static int d=128;
 	private static final double EPSILON = 0.05;
-	private static final int MAX_ITERATIONS = 30;
+	private static final int MAX_ITERATIONS = 1000;
+
+
 
 	@Test
 	public void testSeq() throws Exception {
-		System.out.println("\n TESTING: " + this.getClass().getCanonicalName());
+	//public static void main(String[] args) throws Exception {
+		//System.out.println("\n TESTING: " + this.getClass().getCanonicalName());
 		
 		GaussianParams[] oldParams = readParams(parfile);
 		GaussianParams[] newParams = oldParams ;
@@ -55,14 +47,14 @@ public class SequentialTest {
 			for(int s=0; s<n;s++) {
 				double[] xs=x[s];
 				double[] p = PosteriorProbability.compute_p(oldParams, xs); //compute posterior probability
-				System.out.println(Arrays.toString(xs));
+				//System.out.println(Arrays.toString(xs));
 				for (int i = 0; i < k; i++) {
 					stat[i][s] = new Stats(p[i], oldParams[i].getMu(), xs); //compute statistic
-					GaussianParams test = new GaussianParams(d);
-					test.setW(stat[i][s].getS0());
-					test.setMu(stat[i][s].getS1());
-					test.setSigmaSqr(stat[i][s].getS2());
-					
+//					GaussianParams test = new GaussianParams(d);
+//					test.setW(stat[i][s].getS0());
+//					test.setMu(stat[i][s].getS1());
+//					test.setSigmaSqr(stat[i][s].getS2());
+//					
 					//System.out.println(String.format("%s\n%s\n%s", test.getWasString(), test.getMuAsString(), test.getSigmaAsString()));
 					
 				}
@@ -71,35 +63,35 @@ public class SequentialTest {
 			//aggrego per chiave
 			newParams=new GaussianParams[k];
 			for(int i = 0; i < k; i++) {
-				System.out.println(i);
+				//System.out.println(i);
 				Stats[] statI=stat[i];
 				ArrayList<Stats> statList= new ArrayList <Stats>();
 				for(Stats onestat:statI) {
 					statList.add(onestat);
 				}
 				Stats globalStats = new Stats(statList);
-				GaussianParams test = new GaussianParams(globalStats.getS1().length);
-				test.setW(globalStats.getS0());
-				test.setMu(globalStats.getS1());
-				test.setSigmaSqr(globalStats.getS2());
-				System.out.println(String.format("%s\n%s\n%s", test.getWasString(), test.getMuAsString(), test.getSigmaSqrAsString()));
-				
+//				GaussianParams test = new GaussianParams(globalStats.getS1().length);
+//				test.setW(globalStats.getS0());
+//				test.setMu(globalStats.getS1());
+//				test.setSigmaSqr(globalStats.getS2());
+//				System.out.println(String.format("%s\n%s\n%s", test.getWasString(), test.getMuAsString(), test.getSigmaSqrAsString()));
+//				
 				newParams[i] = new GaussianParams(globalStats, statList.size());
 
 			}
 
-			System.out.println("\n---OLD---");
-			for (int i = 0; i < oldParams.length; i++) {
-				String output = String.format("%s\n%s\n%s", oldParams[i].getWasString(), oldParams[i].getMuAsString(), oldParams[i].getSigmaSqrAsString());
-				System.out.println("Gaussian"+i);
-				System.out.println(output);
-			}
-			System.out.println("---NEW---");
-			for (int i = 0; i < newParams.length; i++) {
-				String output = String.format("%s\n%s\n%s", newParams[i].getWasString(), newParams[i].getMuAsString(), newParams[i].getSigmaSqrAsString());
-				System.out.println("Gaussian"+i);
-				System.out.println(output);
-			}
+//			System.out.println("\n---OLD---");
+//			for (int i = 0; i < oldParams.length; i++) {
+//				String output = String.format("%s\n%s\n%s", oldParams[i].getWasString(), oldParams[i].getMuAsString(), oldParams[i].getSigmaSqrAsString());
+//				System.out.println("Gaussian"+i);
+//				System.out.println(output);
+//			}
+//			System.out.println("---NEW---");
+//			for (int i = 0; i < newParams.length; i++) {
+//				String output = String.format("%s\n%s\n%s", newParams[i].getWasString(), newParams[i].getMuAsString(), newParams[i].getSigmaSqrAsString());
+//				System.out.println("Gaussian"+i);
+//				System.out.println(output);
+//			}
 
 			toBeContinued = GaussianParams.evaluateStop(oldParams, newParams, EPSILON);
 			nIternation++;
