@@ -19,8 +19,7 @@ import utils.GaussianParams;
 import utils.Stats;
 
 public class Main {
-	private static final int N_REDUCERS = 1;
-	private static final int MAX_ITERATIONS = 10;
+	private static final int MAX_ITERATIONS = 300;
 	private static final double EPSILON = 0.05;
 
 	public static void main(String[] args) throws Exception {
@@ -57,7 +56,7 @@ public class Main {
 			job.setMapOutputValueClass(Stats.class);
 		//	job.setCombinerClass(GmmCombiner.class);
 			job.setReducerClass(GmmReducer.class);
-			job.setNumReduceTasks(N_REDUCERS);
+			job.setNumReduceTasks(Integer.parseInt(k));
 
 			job.setInputFormatClass(TextInputFormat.class);
 			job.setOutputFormatClass(TextOutputFormat.class);
