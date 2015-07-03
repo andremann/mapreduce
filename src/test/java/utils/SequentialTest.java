@@ -1,8 +1,6 @@
 package utils;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -79,22 +77,30 @@ public class SequentialTest {
 
 			}
 
-//			System.out.println("\n---OLD---");
-//			for (int i = 0; i < oldParams.length; i++) {
-//				String output = String.format("%s\n%s\n%s", oldParams[i].getWasString(), oldParams[i].getMuAsString(), oldParams[i].getSigmaSqrAsString());
-//				System.out.println("Gaussian"+i);
-//				System.out.println(output);
-//			}
-//			System.out.println("---NEW---");
-//			for (int i = 0; i < newParams.length; i++) {
-//				String output = String.format("%s\n%s\n%s", newParams[i].getWasString(), newParams[i].getMuAsString(), newParams[i].getSigmaSqrAsString());
-//				System.out.println("Gaussian"+i);
-//				System.out.println(output);
-//			}
+			System.out.println("\n---OLD---");
+			for (int i = 0; i < oldParams.length; i++) {
+				String output = String.format("%s\n%s\n%s", oldParams[i].getWasString(), oldParams[i].getMuAsString(), oldParams[i].getSigmaSqrAsString());
+				System.out.println("Gaussian"+i);
+				System.out.println(output);
+			}
+			System.out.println("---NEW---");
+			for (int i = 0; i < newParams.length; i++) {
+				String output = String.format("%s\n%s\n%s", newParams[i].getWasString(), newParams[i].getMuAsString(), newParams[i].getSigmaSqrAsString());
+				System.out.println("Gaussian"+i);
+				System.out.println(output);
+			}
 
 			toBeContinued = GaussianParams.evaluateStop(oldParams, newParams, EPSILON);
 			nIternation++;
 		}
+		System.out.println("");
+		System.out.println("---Fitted GMM---");
+		for (int i = 0; i < newParams.length; i++) {
+			String output = String.format("%s %s %s\n%s %s %s\n%s %s %s","w"+i+"=[", newParams[i].getWasString(),"]","mu"+i+"=[", newParams[i].getMuAsString(),"]","sigmaSqr"+i+"=[", newParams[i].getSigmaSqrAsString(),"]");
+			System.out.println("");
+			System.out.println(output);
+		}
+
 	}
 		
 	private double[][] readx(String filename) throws IOException {
