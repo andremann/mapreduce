@@ -9,32 +9,31 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 /**
- * @author Lucia
+ * @author Lucia, Andrea 
  *
  */
-public class SequentialTest { 
-	public static int  maxNFeatures=10000;
-	//TODO cambiare parfile e xfile prima di eseguire
-	static String parfile="C:\\Users\\Lucia\\SkyDrive\\UNI\\cloudComp\\project\\mapreduce\\src\\main\\resources\\ParametriGMM_INRIA_HOLIDAYS\\kMeans-k64_INRIA-Holidays.txt";
-			//"/Users/andrea/git/mapreduce/src/main/resources/params.txt";
-	static String xfile="C:\\Users\\Lucia\\SkyDrive\\UNI\\cloudComp\\project\\mapreduce\\src\\main\\resources\\ParametriGMM_INRIA_HOLIDAYS\\INRIA_dataset_SIFTs"+maxNFeatures+"LF.txt";
-	//"/Users/andrea/git/mapreduce/src/main/resources/x.txt";
-	static String dimfile="C:\\Users\\Lucia\\SkyDrive\\UNI\\cloudComp\\project\\mapreduce\\src\\main\\resources\\ParametriGMM_INRIA_HOLIDAYS\\dimensions.txt";
-	static int k=64;
-	static int d=128;
+public class SequentialTest {
 	private static final double EPSILON = 0.05;
-	private static final int MAX_ITERATIONS = 1000;
-
-
+	private static final int MAX_ITERATIONS = 30;
+	static String parFile = "/params.txt";
+	static String xFile = "/x.txt";
+	static String dimFile = "/dimensions.txt";
+	
+	static int k;
+	static int d;
+	
 
 	@Test
 	public void testSeq() throws Exception {
-	//public static void main(String[] args) throws Exception {
-		//System.out.println("\n TESTING: " + this.getClass().getCanonicalName());
+		System.out.println("\n TESTING: " + this.getClass().getCanonicalName());
 		
-		GaussianParams[] oldParams = readParams(parfile);
+		String[] dims = DimensionsReader.parse(new InputStreamReader(getClass().getResourceAsStream(dimFile)));
+		k = Integer.parseInt(dims[0]);
+		d = Integer.parseInt(dims[1]);
+		
+		GaussianParams[] oldParams =  GaussianParams.parse(new InputStreamReader(getClass().getResourceAsStream(parFile)), k, d);
 		GaussianParams[] newParams = oldParams ;
-		double[][] x = readx(xfile);
+		double[][] x = readx(xFile);
 		int n = x.length;
 
 		boolean toBeContinued = true;
@@ -95,74 +94,33 @@ public class SequentialTest {
 
 			toBeContinued = GaussianParams.evaluateStop(oldParams, newParams, EPSILON);
 			nIternation++;
-
-
 		}
-
-
-
 	}
-	private static GaussianParams[] readParams(String filename) throws IOException {
-		GaussianParams[] params = new GaussianParams[k];
-		for (int i = 0; i < k; i++) {
-			params[i] = new GaussianParams(d);
-		}
-
-		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(filename))));
-		try {
-			String line;
-			line = br.readLine();
-			int counter = 0;
-			while (line != null) {
-				int index = counter / 3;
-				switch (counter % 3) {
-				case 0:
-					params[index].setW(Double.parseDouble(line));
-					break;
-				case 1:
-					params[index].setMu(line);
-					break;
-				case 2:
-					params[index].setSigmaSqr(line);
-					break;
-				default:
-					break;
-				}
-				counter++;
-				line = br.readLine();
-			}
-		} finally {
-			br.close();
-		}
-		return params;
-	}
-	
-	private static double[][] readx(String filename) throws IOException {
+		
+	private double[][] readx(String filename) throws IOException {
 		ArrayList<double[]> xlist = new ArrayList<double[]> ();
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(filename))));
+		BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(xFile)));
 		try {
 			String line;
 			line = br.readLine();
-			int counter = 0;
 			while (line != null) {
 				xlist.add(setx(line));
-				counter++;
 				line = br.readLine();
 			}
 		} finally {
 			br.close();
 		}
-		int n=xlist.size();
-		double[][] x= new double [n][d];
-		for(int i=0;i<n;i++) {
-			x[i]=xlist.get(i);
+		int n = xlist.size();
+		double[][] x = new double [n][d];
+		for(int i = 0; i < n; i++) {
+			x[i] = xlist.get(i);
 		}
 		return x;
 	}
 
 	static public double[] setx(String line) {
-		double[]x=new double[d];
+		double[]x = new double[d];
 		String[] split = line.split("\\s+");
 		if (split.length != d) {
 			throw new RuntimeException("Input vector VS GaussianParams dimensions mismatch!!");

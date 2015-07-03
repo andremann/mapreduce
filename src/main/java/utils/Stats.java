@@ -23,13 +23,13 @@ public class Stats implements Serializable, Writable {
 	 * Usato durante la fase di (de)serializzazione
 	 */
 		
-		n=0;
+		n = 0;
 		s0 = 0;
 		s1 = null;
 		s2 = null;
 	}
 	public Stats(int d) {
-		n=0;
+		n = 0;
 		s0 = 0;
 		s1 = new double[d];
 		s2 = new double[d];
@@ -43,7 +43,7 @@ public class Stats implements Serializable, Writable {
 	 */
 	public Stats(double p, double[] mu, double[] x) {
 		int d = x.length;
-		n+=1;
+		n += 1;
 		s0 = p;
 		s1 = new double[d];
 		s2 = new double[d]; 
@@ -83,12 +83,12 @@ public class Stats implements Serializable, Writable {
 		 */
 		
 		int d = statsList.get(0).s1.length;		
-		n=0;
+		n = 0;
 		s0 = 0;
 		s1 = new double[d];
 		s2 = new double[d];
 		for(Stats iterStat : statsList) {
-			n+=iterStat.n;
+			n += iterStat.n;
 			s0 += iterStat.s0;
 			double [] s1iter = iterStat.s1;
 			double [] s2iter = iterStat.s2;
@@ -111,13 +111,13 @@ public class Stats implements Serializable, Writable {
  			Stats next = statsIterator.next();
  			int d = next.getS1().length;
  			if (initialize) {
- 				n=0;
+ 				n = 0;
  				s0 = 0;
  				s1 = new double[d];
  				s2 = new double[d];
  				initialize = false;
  			}
- 			n+=next.n;
+ 			n += next.n;
 			s0 += next.s0;
 			double [] s1iter = next.s1;
 			double [] s2iter = next.s2;
@@ -164,7 +164,7 @@ public class Stats implements Serializable, Writable {
 
 	@Override
 	public void readFields(DataInput arg0) throws IOException {
-		n=arg0.readInt();
+		n = arg0.readInt();
 		s0 = arg0.readDouble();
 		s1 = new double[arg0.readInt()];
 		for(int i = 0; i < s1.length; i++) {
