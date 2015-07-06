@@ -96,41 +96,6 @@ Science and Statistics, Springer, 2006.
 		}
 	}
 
-//	public GaussianParams(Stats stat, int n) throws Exception{//OLD
-//		/**
-//		 * Usato nel reducer.
-//		 */
-//		double nk = stat.getS0();
-//		mu = stat.getS1();
-//		sigmaSqr = stat.getS2();
-//		int d = mu.length; 
-//		w=nk/n;
-//		int nzero=0;
-//		if(nk!=0) {
-//			for(int dim = 0; dim < d; dim++) {		
-//				// handle  too small sigmaSqr values
-//				if (sigmaSqr[dim] < min_sigmaSqr) {
-//					sigmaSqr[dim] = min_sigmaSqr;
-//					nzero++;
-//				}
-//				mu[dim] /= nk;
-//				sigmaSqr[dim] /= nk;
-//			}	
-//
-//		}
-//		else {
-//			throw new Exception("caso da risolvere!!!!");//TODO 
-//		}
-//			
-//		// handle pathological case when a Gaussian component is collapsing
-//		if(nzero == d) {
-//			for(int dim = 0; dim < d; dim++) {	
-//				sigmaSqr[dim] = 100;
-//				mu[dim] = mu[dim] * (2 * Math.random() - 1);
-//			}
-//		}
-//	}
-
 	public double getW() {
 		return w;
 	}
@@ -191,10 +156,6 @@ Science and Statistics, Springer, 2006.
 			sigmaSqr[i] = Double.parseDouble(split[i]);
 		}
 		return;
-	}
-
-	private String vectorToString(double[] v) {
-		return Arrays.toString(v);
 	}
 
 	/**

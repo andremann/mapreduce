@@ -1,4 +1,5 @@
 package gmm;
+import mapreduce.GmmCombiner;
 import mapreduce.GmmMapper;
 import mapreduce.GmmReducer;
 
@@ -43,6 +44,7 @@ public class Main {
 		int nIternation = 0;
 		System.out.println("Convergence threshold: " + EPSILON);
 		System.out.println("Max number of iterations: " + MAX_ITERATIONS);
+		long startTime = System.currentTimeMillis();
 		while (toBeContinued && nIternation < MAX_ITERATIONS) {
 			System.out.println("\n------------------------------ITERATION #" + nIternation + "------------------------------");
 			Job job = Job.getInstance(conf, "gmm");
@@ -54,7 +56,7 @@ public class Main {
 			job.setMapperClass(GmmMapper.class);
 			
 			job.setMapOutputValueClass(Stats.class);
-		//	job.setCombinerClass(GmmCombiner.class);
+			job.setCombinerClass(GmmCombiner.class);
 			job.setReducerClass(GmmReducer.class);
 			job.setNumReduceTasks(Integer.parseInt(k));
 
@@ -93,13 +95,35 @@ public class Main {
 			
 			nIternation++;
 		}
-		System.out.println("Program exited. Reason:\n \t-enough approximation: " + !toBeContinued + "\n \t-max iterations exceeded: " + !(nIternation < MAX_ITERATIONS));
+		long duration = startTime - System.currentTimeMillis();
+		System.out.println("Program exited after " + (nIternation+1) + " iterations executed in " + duration/1000000000 + ". \nReason:\n \t-enough approximation: " + !toBeContinued + "\n \t-max iterations exceeded: " + !(nIternation < MAX_ITERATIONS));
+	}
+	
+	private String durationFormatter(long ms) {
+		final int SECOND = 1000;
+		final int MINUTE = 60 * SECOND;
+		final int HOUR = 60 * MINUTE;
+		final int DAY = 24 * HOUR;
+		
+		StringBuffer text = new StringBuffer("");
+		if (ms > DAY) {
+		  text.append(ms / DAY).append(" days ");
+		  ms %= DAY;
+		}
+		if (ms > HOUR) {
+		  text.append(ms / HOUR).append(" hours ");
+		  ms %= HOUR;
+		}
+		if (ms > MINUTE) {
+		  text.append(ms / MINUTE).append(" minutes ");
+		  ms %= MINUTE;
+		}
+		if (ms > SECOND) {
+		  text.append(ms / SECOND).append(" seconds ");
+		  ms %= SECOND;
+		}
+		text.append(ms + " ms");
+		return text.toString();
 	}
 
-	
-	private static class PartFileFilter implements PathFilter {
-		public boolean accept(Path p) {
-			return (p.getName().contains("part-r") ? true : false);
-		}
-	}
 }

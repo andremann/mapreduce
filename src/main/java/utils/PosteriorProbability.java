@@ -41,9 +41,11 @@ public class PosteriorProbability {
 				p[i] = Math.exp(p[i] - tmp_logSum);
 			}
 			return p; 	
-		}else
+		} else {
 			return null;
+		}
 	}
+	
 	/**
 	 *  Compute log(a+b) given log(a) and log(b)
 	 * 
@@ -52,10 +54,12 @@ public class PosteriorProbability {
 	 * @return
 	 */
 	static final double log_sum(double log_a, double log_b) {
-		if (log_a < log_b)
+		if (log_a < log_b) {
 			return (log_b + Math.log(1 + Math.exp(log_a - log_b)));
-		else
+		}
+		else {
 			return (log_a + Math.log(1 + Math.exp(log_b - log_a)));
+		}
 	}
 
 }
