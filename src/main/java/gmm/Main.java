@@ -95,11 +95,11 @@ public class Main {
 			
 			nIternation++;
 		}
-		long duration = startTime - System.currentTimeMillis();
-		System.out.println("Program exited after " + (nIternation+1) + " iterations executed in " + duration/1000000000 + ". \nReason:\n \t-enough approximation: " + !toBeContinued + "\n \t-max iterations exceeded: " + !(nIternation < MAX_ITERATIONS));
+		long duration = System.currentTimeMillis() - startTime;
+		System.out.println("Program exited after " + nIternation + " iterations executed in " + durationFormatter(duration) + ". \nReason:\n \t-enough approximation: " + !toBeContinued + "\n \t-max iterations exceeded: " + !(nIternation < MAX_ITERATIONS));
 	}
 	
-	private String durationFormatter(long ms) {
+	private static String durationFormatter(long ms) {
 		final int SECOND = 1000;
 		final int MINUTE = 60 * SECOND;
 		final int HOUR = 60 * MINUTE;
