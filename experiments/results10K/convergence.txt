@@ -1,0 +1,7 @@
+------------------------------ITERATION #178------------------------------
+NORM(muOld - muNew)
+0.04389963191766008
+Program exited after 179 iterations executed in 21 hours 5 minutes 53 seconds 541 ms.
+Reason:
+        -enough approximation: true
+        -max iterations exceeded: false

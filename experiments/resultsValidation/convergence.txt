@@ -1,0 +1,28 @@
+-----------------------------ITERATION #0------------------------------
+
+NORM(muOld - muNew)
+3.353529066327168
+
+------------------------------ITERATION #1------------------------------
+
+NORM(muOld - muNew)
+1.0710760476027144
+
+------------------------------ITERATION #2------------------------------
+
+NORM(muOld - muNew)
+0.8565304743731931
+
+------------------------------ITERATION #3------------------------------
+
+NORM(muOld - muNew)
+0.3454985252567331
+
+------------------------------ITERATION #4------------------------------
+
+NORM(muOld - muNew)
+0.022872044580804794
+Program exited after 5 iterations executed in 3 minutes 20 seconds 550 ms.
+Reason:
+        -enough approximation: true
+        -max iterations exceeded: false
