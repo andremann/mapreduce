@@ -182,7 +182,7 @@ $\log(a+b)= log(a)+ \log\left(1+\exp(\log b- \log a) \right).$\\
 \section{Tests}
 We tested our implementation in two scenarios:
 \begin{description}
-	\item[Synthetic data.] We used MATLAB to generate 2000 points distributed with a mixture of two Gaussians with parameters $w_1=0.5,\, \mu_1=[1 , 2],\ \Sigma_1=[2, 0; 0, 0.5], \, w_2=0.5, \, \mu_2=[-3, -5], \,\Sigma_2=[1, 0; 0, 1]$ and then we used Hadoop to estimate a Gaussian Mixture Model with k=2. The results obtained are $w_1^*=0.5,\, \mu_1^*=[0.95 , 2.03],\ \Sigma_1^*=[1.99, 0; 0, 0.5], \, w_2^*=0.5, \, \mu_2^*=[-2.96,  -4.97], \,\Sigma_2^*=[1.01, 0; 0, 0.99]$ (see  Figure \ref{fig:gmmd2k2}). 
+	\item[Synthetic data.] We used MATLAB to generate 2000 points distributed with a mixture of two Gaussians with parameters $w_1=0.5,\, \mu_1=[1 , 2],\ \Sigma_1=[2, 0; 0, 0.5], \, w_2=0.5, \, \mu_2=[-3, -5], \,\Sigma_2=[1, 0; 0, 1]$ and then we used Hadoop to estimate a Gaussian Mixture Model with $k=2$. The results obtained are $w_1^*=0.5,\, \mu_1^*=[0.95 , 2.03],\ \Sigma_1^*=[1.99, 0; 0, 0.5], \, w_2^*=0.5, \, \mu_2^*=[-2.96,  -4.97], \,\Sigma_2^*=[1.01, 0; 0, 0.99]$ (see  Figure \ref{fig:gmmd2k2}). 
 	\item[INRIA Holidays dataset.] INRIA Holidays \footnote{http://lear.inrialpes.fr/~jegou/data.php}
 	is a collection of $1\,491$ personal holiday photos. We extracted SIFT local features from images and then we selected two subsets of 1K and 10K local features each. The starting parameters used in EM were computed by using $K$-means with $k=64$. Then a mixture of 64 Gaussians was estimated. The obtained GMM could be used, for example, to compute Fisher Vector \cite{sanchez13} image representation for image retrieval and classification task.
 	
