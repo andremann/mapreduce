@@ -1,0 +1,22 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{bishop06}
+C.~M. Bishop, Pattern Recognition and Machine Learning, Information Science and
+  Statistics, Springer, 2006.
+
+\bibitem{lowe99}
+D.~Lowe, Object recognition from local scale-invariant features, in: Computer
+  Vision, 1999. The Proceedings of the Seventh IEEE International Conference
+  on, Vol.~2, 1999, pp. 1150--1157 vol.2.
+
+\bibitem{sanchez13}
+J.~S{\`a}nchez, F.~Perronnin, T.~Mensink, J.~Verbeek, Image classification with
+  the fisher vector: Theory and practice, International Journal of Computer
+  Vision 105~(3) (2013) 222--245.
+
+\end{thebibliography}

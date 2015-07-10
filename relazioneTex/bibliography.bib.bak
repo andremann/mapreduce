@@ -1,0 +1,857 @@
+% This file was created with JabRef 2.10.
+% Encoding: Cp1252
+
+
+@InProceedings{amato13:OnReducing,
+  Title                    = {On Reducing the Number of Visual Words in the Bag-of-Features Representation},
+  Author                   = {Giuseppe Amato and
+ Fabrizio Falchi and
+ Claudio Gennaro},
+  Booktitle                = {{VISAPP} 2013 - Proceedings of the International Conference on Computer
+ Vision Theory and Applications, Volume 1, Barcelona, Spain, 21-24
+ February, 2013.},
+  Year                     = {2013},
+  Pages                    = {657--662},
+
+  Bibsource                = {dblp computer science bibliography, http://dblp.org},
+  Biburl                   = {http://dblp.uni-trier.de/rec/bib/conf/visapp/AmatoFG13},
+  Crossref                 = {DBLP:conf/visapp/2013-1},
+  Timestamp                = {Sun, 14 Jul 2013 11:21:10 +0200}
+}
+
+@InProceedings{alahi12,
+  Title                    = {FREAK: Fast Retina Keypoint},
+  Author                   = {Alahi, A. and Ortiz, R. and Vandergheynst, P.},
+  Booktitle                = {Computer Vision and Pattern Recognition (CVPR), 2012 IEEE Conference on},
+  Year                     = {2012},
+  Month                    = {June},
+  Pages                    = {510-517},
+
+  ISSN                     = {1063-6919},
+  Keywords                 = {computational complexity;eye;image matching;smart phones;transforms;SIFT;SURF;association algorithm;binary robust invariant scalable keypoint;binary string;computation complexity;embedded application;embedded device;fast retina keypoint;human visual system;keypoint descriptor;keypoint matching;scale invariant feature transform;smart phone;speed-up robust feature;vision application;Detectors;Humans;Kernel;Noise;Retina;Robustness;Vectors}
+}
+
+@InCollection{amato13,
+  Title                    = {Large Scale Image Retrieval Using Vector of Locally Aggregated Descriptors},
+  Author                   = {Amato, Giuseppe and Bolettieri, Paolo and Falchi, Fabrizio and Gennaro, Claudio},
+  Booktitle                = {Similarity Search and Applications},
+  Publisher                = {Springer Berlin Heidelberg},
+  Year                     = {2013},
+  Editor                   = {Brisaboa, Nieves and Pedreira, Oscar and Zezula, Pavel},
+  Pages                    = {245-256},
+  Series                   = {Lecture Notes in Computer Science},
+  Volume                   = {8199},
+
+  ISBN                     = {978-3-642-41061-1}
+}
+
+@InProceedings{arandjelovic13:allAbVALD,
+  Title                    = {All About VLAD},
+  Author                   = {Arandjelovic, R. and Zisserman, A.},
+  Booktitle                = {Computer Vision and Pattern Recognition (CVPR), 2013 IEEE Conference on},
+  Year                     = {2013},
+  Month                    = {June},
+  Pages                    = {1578-1585},
+
+  ISSN                     = {1063-6919}
+}
+
+@InProceedings{arandjelovic12:rootsift,
+  Title                    = {Three things everyone should know to improve object retrieval},
+  Author                   = {Arandjelovic, R. and Zisserman, A.},
+  Booktitle                = {Computer Vision and Pattern Recognition (CVPR), 2012 IEEE Conference on},
+  Year                     = {2012},
+  Month                    = {June},
+  Pages                    = {2911-2918},
+
+  ISSN                     = {1063-6919}
+}
+
+@InCollection{bay06,
+  Title                    = {SURF: Speeded Up Robust Features},
+  Author                   = {Bay, Herbert and Tuytelaars, Tinne and Van Gool, Luc},
+  Booktitle                = {Computer Vision - ECCV 2006},
+  Publisher                = {Springer Berlin Heidelberg},
+  Year                     = {2006},
+  Editor                   = {Leonardis, Ales and Bischof, Horst and Pinz, Axel},
+  Pages                    = {404-417},
+  Series                   = {Lecture Notes in Computer Science},
+  Volume                   = {3951},
+
+  ISBN                     = {978-3-540-33832-1},
+  Language                 = {English}
+}
+
+@Book{bishop06,
+  Title                    = {Pattern Recognition and Machine Learning},
+  Author                   = {Bishop, Christopher M.},
+  Publisher                = {Springer},
+  Year                     = {2006},
+  Series                   = {Information Science and Statistics},
+
+  ISBN                     = {9780387310732},
+  Lccn                     = {2006922522}
+}
+
+@InCollection{bo09,
+  Title                    = {Efficient Match Kernel between Sets of Features for Visual Recognition},
+  Author                   = {Liefeng Bo and Sminchisescu, Cristian},
+  Booktitle                = {Advances in Neural Information Processing Systems 22},
+  Publisher                = {Curran Associates, Inc.},
+  Year                     = {2009},
+  Editor                   = {Y. Bengio and D. Schuurmans and J.D. Lafferty and C.K.I. Williams and A. Culotta},
+  Pages                    = {135--143}
+}
+
+@InProceedings{boureau10,
+  Title                    = {Learning mid-level features for recognition},
+  Author                   = {Boureau, Y.-L. and Bach, F. and LeCun, Y. and Ponce, J.},
+  Booktitle                = {Computer Vision and Pattern Recognition (CVPR), 2010 IEEE Conference on},
+  Year                     = {2010},
+  Month                    = {June},
+  Pages                    = {2559-2566},
+
+  ISSN                     = {1063-6919}
+}
+
+@InCollection{calonder10,
+  Title                    = {BRIEF: Binary Robust Independent Elementary Features},
+  Author                   = {Calonder, Michael and Lepetit, Vincent and Strecha, Christoph and Fua, Pascal},
+  Booktitle                = {Computer Vision - ECCV 2010},
+  Publisher                = {Springer Berlin Heidelberg},
+  Year                     = {2010},
+  Editor                   = {Daniilidis, Kostas and Maragos, Petros and Paragios, Nikos},
+  Pages                    = {778-792},
+  Series                   = {Lecture Notes in Computer Science},
+  Volume                   = {6314},
+
+  ISBN                     = {978-3-642-15560-4},
+  Language                 = {English}
+}
+
+@InProceedings{chen11,
+  Title                    = {Residual Enhanced Visual Vectors for on-device image matching},
+  Author                   = {Chen, D. and Tsai, S. and Chandrasekhar, V. and Takacs, G. and Huizhong Chen and Vedantham, R. and Grzeszczuk, R. and Girod, B.},
+  Booktitle                = {Signals, Systems and Computers (ASILOMAR), 2011 Conference Record of the Forty Fifth Asilomar Conference on},
+  Year                     = {2011},
+  Month                    = {Nov},
+  Pages                    = {850-854},
+
+  ISSN                     = {1058-6393}
+}
+
+@InProceedings{chum11,
+  Title                    = {Total recall II: Query expansion revisited},
+  Author                   = {Chum, O. and Mikulik, A. and Perdoch, M. and Matas, J.},
+  Booktitle                = {Computer Vision and Pattern Recognition (CVPR), 2011 IEEE Conference on},
+  Year                     = {2011},
+  Month                    = {June},
+  Pages                    = {889-896},
+
+  ISSN                     = {1063-6919}
+}
+
+@InProceedings{chum07,
+  Title                    = {Total Recall: Automatic Query Expansion with a Generative Feature Model for Object Retrieval},
+  Author                   = {Chum, O. and Philbin, J. and Sivic, J. and Isard, M. and Zisserman, A.},
+  Booktitle                = {Computer Vision, 2007. ICCV 2007. IEEE 11th International Conference on},
+  Year                     = {2007},
+  Month                    = {Oct},
+  Pages                    = {1-8},
+
+  ISSN                     = {1550-5499}
+}
+
+@Article{csurka04,
+  Title                    = {Visual categorization with bags of keypoints},
+  Author                   = {Csurka, Gabriella and Dance, Christopher and Fan, Lixin and Willamowski, Jutta and Bray, C{\'e}dric},
+  Journal                  = {Workshop on statistical learning in computer vision, ECCV},
+  Year                     = {2004},
+  Number                   = {1-22},
+  Pages                    = {1--2},
+  Volume                   = {1},
+
+  Owner                    = {Lucia},
+  Publisher                = {Prague},
+  Timestamp                = {2015.04.10}
+}
+
+@InProceedings{delhumeau13,
+  Title                    = {Revisiting the VLAD Image Representation},
+  Author                   = {Delhumeau, Jonathan and Gosselin, Philippe-Henri and J{\'e}gou, Herv{\'e} and P{\'e}rez, Patrick},
+  Booktitle                = {Proceedings of the 21st ACM International Conference on Multimedia},
+  Year                     = {2013},
+
+  Address                  = {New York, NY, USA},
+  Pages                    = {653--656},
+  Publisher                = {ACM},
+  Series                   = {MM '13},
+
+  Acmid                    = {2502171},
+  Doi                      = {10.1145/2502081.2502171},
+  ISBN                     = {978-1-4503-2404-5},
+  Keywords                 = {VLAD, image search, multimedia retrieval},
+  Location                 = {Barcelona, Spain},
+  Numpages                 = {4}
+}
+
+@InProceedings{fine2001,
+  Title                    = {A hybrid GMM/SVM approach to speaker identification},
+  Author                   = {Fine, Shai and Navratil, J. and Gopinath, R.A.},
+  Booktitle                = {Acoustics, Speech, and Signal Processing, 2001. Proceedings. (ICASSP '01). 2001 IEEE International Conference on},
+  Year                     = {2001},
+  Pages                    = {417-420 vol.1},
+  Volume                   = {1},
+
+  ISSN                     = {1520-6149}
+}
+
+@Article{vanGemert10,
+  Title                    = {Visual Word Ambiguity},
+  Author                   = {van Gemert, J.C. and Veenman, C.J. and Smeulders, A.W.M. and Geusebroek, J.-M.},
+  Journal                  = {Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  Year                     = {2010},
+
+  Month                    = {July},
+  Number                   = {7},
+  Pages                    = {1271-1283},
+  Volume                   = {32},
+
+  ISSN                     = {0162-8828}
+}
+
+@InCollection{vanGemert08,
+  Title                    = {Kernel Codebooks for Scene Categorization},
+  Author                   = {van Gemert, Jan C. and Geusebroek, Jan-Mark and Veenman, Cor J. and Smeulders, Arnold W.M.},
+  Booktitle                = {Computer Vision - ECCV 2008},
+  Publisher                = {Springer Berlin Heidelberg},
+  Year                     = {2008},
+  Editor                   = {Forsyth, David and Torr, Philip and Zisserman, Andrew},
+  Pages                    = {696-709},
+  Series                   = {Lecture Notes in Computer Science},
+  Volume                   = {5304},
+
+  ISBN                     = {978-3-540-88689-1}
+}
+
+@InProceedings{grana13,
+  Title                    = {{A fast approach for integrating ORB descriptors in the bag of words model}},
+  Author                   = {Grana, Costantino and Borghesani, Daniele and Manfredi, Marco and Cucchiara, Rita},
+  Booktitle                = {IS\&T/SPIE Electronic Imaging},
+  Year                     = {2013},
+  Editor                   = {Snoek, Cees G. M. and Kennedy, Lyndon S. and Creutzburg, Reiner and Akopian, David and W\"{u}ller, Dietmar and Matherson, Kevin J. and Georgiev, Todor G. and Lumsdaine, Andrew},
+  Month                    = mar,
+  Publisher                = {International Society for Optics and Photonics}
+}
+
+@Article{gray98,
+  Title                    = {Quantization},
+  Author                   = {Gray, R.M. and Neuhoff, D.L.},
+  Journal                  = {Information Theory, IEEE Transactions on},
+  Year                     = {1998},
+
+  Month                    = {Oct},
+  Number                   = {6},
+  Pages                    = {2325-2383},
+  Volume                   = {44},
+
+  ISSN                     = {0018-9448}
+}
+
+@Article{holub2005,
+  Title                    = {Combining Generative Models and Fisher Kernels for Object Recognition},
+  Author                   = {Alex D. Holub and Max Welling and Pietro Perona},
+  Journal                  = {Computer Vision, IEEE International Conference on},
+  Year                     = {2005},
+  Pages                    = {136-143},
+  Volume                   = {1},
+
+  Address                  = {Los Alamitos, CA, USA},
+  ISSN                     = {1550-5499},
+  Publisher                = {IEEE Computer Society}
+}
+
+@Book{householder64,
+  Title                    = {The Theory of Matrices in Numerical Analysis},
+  Author                   = {Householder, A.S.},
+  Publisher                = {Blaisdell Publishing Company},
+  Year                     = {1964},
+  Series                   = {A Blaisdell book in pure and applied sciences: introduction to higher mathematics},
+
+  Lccn                     = {lc64010007}
+}
+
+@InProceedings{jegou08,
+  Title                    = {Hamming embedding and weak geometric consistency for large scale image search},
+  Author                   = {Herv{\'e} J{\'e}gou and Matthijs Douze and Cordelia Schmid},
+  Booktitle                = {European Conference on Computer Vision},
+  Year                     = {2008},
+  Editor                   = {David Forsyth, Philip Torr, Andrew Zisserman},
+  Month                    = {oct},
+  Pages                    = {304--317},
+  Publisher                = {Springer},
+  Series                   = {LNCS},
+  Volume                   = {I}
+}
+
+@Article{jegou11:PQ,
+  Title                    = {Product Quantization for Nearest Neighbor Search},
+  Author                   = {J{\'e}gou, H. and Douze, M. and Schmid, C.},
+  Journal                  = {Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  Year                     = {2011},
+
+  Month                    = {Jan},
+  Number                   = {1},
+  Pages                    = {117-128},
+  Volume                   = {33},
+
+  ISSN                     = {0162-8828}
+}
+
+@Article{jegou10:improvingBoW,
+  Title                    = {Improving Bag-of-Features for Large Scale Image Search},
+  Author                   = {J{\'e}gou, Herv{\'e} and Douze, Matthijs and Schmid, Cordelia},
+  Journal                  = {International Journal of Computer Vision},
+  Year                     = {2010},
+  Number                   = {3},
+  Pages                    = {316-336},
+  Volume                   = {87},
+
+  ISSN                     = {0920-5691},
+  Owner                    = {Lucia},
+  Publisher                = {Springer US},
+  Timestamp                = {2015.04.13}
+}
+
+@Article{jegou12,
+  Title                    = {Aggregating Local Image Descriptors into Compact Codes},
+  Author                   = {H. J{\'e}gou and F. Perronnin and M. Douze and J. S{\`a}nchez and P. P{\'e}rez and C. Schmid},
+  Journal                  = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  Year                     = {2012},
+  Number                   = {9},
+  Pages                    = {1704-1716},
+  Volume                   = {34},
+
+  Address                  = {Los Alamitos, CA, USA},
+  ISSN                     = {0162-8828},
+  Publisher                = {IEEE Computer Society}
+}
+
+@InProceedings{jegou14:triangulation,
+  Title                    = {{Triangulation embedding and democratic aggregation for image search}},
+  Author                   = {J{\'e}gou, Herv{\'e} and Zisserman, Andrew},
+  Booktitle                = {{CVPR - International Conference on Computer Vision and Pattern Recognition}},
+  Year                     = {2014},
+
+  Address                  = {Columbus, United States},
+  Month                    = Jun,
+
+  Hal_id                   = {hal-00977321},
+  Hal_version              = {v2}
+}
+
+@InProceedings{jegou10:VLAD,
+  Title                    = {Aggregating local descriptors into a compact image representation},
+  Author                   = {Herv\'e J\'egou and Matthijs Douze and Cordelia Schmid and Patrick P\'erez},
+  Booktitle                = {IEEE Conference on Computer Vision \& Pattern Recognition},
+  Year                     = {2010},
+  Month                    = {jun}
+}
+
+@Article{jegou10:AccurateImage,
+  Title                    = {Accurate Image Search Using the Contextual Dissimilarity Measure},
+  Author                   = {J\'egou , H. and Schmid, C. and Harzallah, H. and Verbeek, J.},
+  Journal                  = {Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  Year                     = {2010},
+
+  Month                    = {Jan},
+  Number                   = {1},
+  Pages                    = {2-11},
+  Volume                   = {32},
+
+  ISSN                     = {0162-8828}
+}
+
+@InProceedings{jaakkola98,
+  Title                    = {Exploiting Generative Models in Discriminative Classifiers},
+  Author                   = {Tommi Jaakkola and David Haussler},
+  Booktitle                = {In Advances in Neural Information Processing Systems 11},
+  Year                     = {1998},
+  Pages                    = {487--493},
+  Publisher                = {MIT Press}
+}
+
+@InProceedings{kaufman87,
+  Title                    = {Clustering by Means of Medoids},
+  Author                   = {Kaufman, L. and Rousseeuw, P.},
+  Booktitle                = {An introduction to L1-norm based statistical data analysis},
+  Year                     = {1987},
+  Editor                   = {Yadolah Dodge},
+  Number                   = {4},
+  Series                   = {Computational Statistics \& Data Analysis},
+  Volume                   = {5}
+}
+
+@InProceedings{krapac11,
+  Title                    = {{Modeling Spatial Layout with Fisher Vectors for Image Categorization}},
+  Author                   = {Krapac, Josip and Verbeek, Jakob and Jurie, Fr{\'e}d{\'e}ric},
+  Booktitle                = {{ICCV 2011 - International Conference on Computer Vision}},
+  Year                     = {2011},
+
+  Address                  = {Barcelona, Spain},
+  Month                    = Nov,
+  Pages                    = {1487-1494},
+  Publisher                = {{IEEE}},
+
+  Hal_id                   = {inria-00612277},
+  Hal_version              = {v2}
+}
+
+@InProceedings{lazebnik06,
+  Title                    = {Beyond Bags of Features: Spatial Pyramid Matching for Recognizing Natural Scene Categories},
+  Author                   = {Lazebnik, S. and Schmid, C. and Ponce, J.},
+  Booktitle                = {Computer Vision and Pattern Recognition, 2006 IEEE Computer Society Conference on},
+  Year                     = {2006},
+  Volume                   = {2},
+
+  ISSN                     = {1063-6919}
+}
+
+@Article{lee15,
+  Title                    = {Bag-of-binary-features for fast image representation},
+  Author                   = {Suwon Lee and Choi, S. and Yang, H.S.},
+  Journal                  = {Electronics Letters},
+  Year                     = {2015},
+  Number                   = {7},
+  Pages                    = {555-557},
+  Volume                   = {51},
+
+  ISSN                     = {0013-5194},
+  Keywords                 = {binary codes;feature extraction;image representation;image retrieval;vector quantisation;BoF model;bag-of-binary-feature model;bag-of-feature model;efficient BoBF feature extraction;fast image representation;image retrieval quantisation;single vector form}
+}
+
+@InProceedings{leutenegger11,
+  Title                    = {BRISK: Binary Robust invariant scalable keypoints},
+  Author                   = {Leutenegger, S. and Chli, M. and Siegwart, R.Y.},
+  Booktitle                = {Computer Vision (ICCV), 2011 IEEE International Conference on},
+  Year                     = {2011},
+  Month                    = {Nov},
+  Pages                    = {2548-2555},
+
+  ISSN                     = {1550-5499}
+}
+
+@Article{levi15_LATCH,
+  Title                    = {{LATCH:} Learned Arrangements of Three Patch Codes},
+  Author                   = {Gil Levi and
+ Tal Hassner},
+  Journal                  = {CoRR},
+  Year                     = {2015},
+  Volume                   = {abs/1501.03719},
+
+  Bibsource                = {dblp computer science bibliography, http://dblp.org},
+  Biburl                   = {http://dblp.uni-trier.de/rec/bib/journals/corr/LeviH15}
+}
+
+@InProceedings{lowe99,
+  Title                    = {Object recognition from local scale-invariant features},
+  Author                   = {Lowe, D.G.},
+  Booktitle                = {Computer Vision, 1999. The Proceedings of the Seventh IEEE International Conference on},
+  Year                     = {1999},
+  Pages                    = {1150-1157 vol.2},
+  Volume                   = {2},
+
+  Keywords                 = {computational geometry;feature extraction;image matching;least squares approximations;object recognition;3D projection;blurred image gradients;candidate object matches;cluttered partially occluded images;computation time;inferior temporal cortex;local geometric deformations;local image features;local scale-invariant features;low residual least squares solution;multiple orientation planes;nearest neighbor indexing method;primate vision;robust object recognition;staged filtering approach;unknown model parameters;Computer science;Electrical capacitance tomography;Filters;Image recognition;Layout;Lighting;Neurons;Object recognition;Programmable logic arrays;Reactive power}
+}
+
+@InProceedings{lyu05,
+  Title                    = {Mercer kernels for object recognition with local features},
+  Author                   = {Siwei Lyu},
+  Booktitle                = {Computer Vision and Pattern Recognition, 2005. CVPR 2005. IEEE Computer Society Conference on},
+  Year                     = {2005},
+  Month                    = {June},
+  Pages                    = {223-229 vol. 2},
+  Volume                   = {2},
+
+  ISSN                     = {1063-6919}
+}
+
+@Book{mclachlan2000,
+  Title                    = {Finite Mixture Models},
+  Author                   = {McLachlan, G. and Peel, D.},
+  Publisher                = {Wiley},
+  Year                     = {2000},
+  Series                   = {Wiley series in probability and statistics},
+
+  ISBN                     = {9780471006268}
+}
+
+@InProceedings{moreno2000,
+  Title                    = {Using the Fisher kernel method for Web audio classification},
+  Author                   = {Moreno, P.J. and Rifkin, R.},
+  Booktitle                = {Acoustics, Speech, and Signal Processing, 2000. ICASSP '00. Proceedings. 2000 IEEE International Conference on},
+  Year                     = {2000},
+  Pages                    = {2417-2420 vol.4},
+  Volume                   = {6},
+
+  ISSN                     = {1520-6149}
+}
+
+@InProceedings{perdoch09,
+  Title                    = {Efficient representation of local geometry for large scale object retrieval},
+  Author                   = {Perd'och, M. and Chum, O. and Matas, J.},
+  Booktitle                = {Computer Vision and Pattern Recognition, 2009. CVPR 2009. IEEE Conference on},
+  Year                     = {2009},
+  Month                    = {June},
+  Pages                    = {9-16},
+
+  ISSN                     = {1063-6919}
+}
+
+@InProceedings{perronnin07,
+  Title                    = {Fisher Kernels on Visual Vocabularies for Image Categorization},
+  Author                   = {Perronnin, F. and Dance, C.},
+  Booktitle                = {Computer Vision and Pattern Recognition, 2007. CVPR '07. IEEE Conference on},
+  Year                     = {2007},
+  Month                    = {June},
+  Pages                    = {1-8},
+
+  ISSN                     = {1063-6919},
+  Keywords                 = {Gaussian processes;gradient methods;image classification;Fisher kernels;Gaussian mixture model;generative probability model;gradient vector;image categorization;pattern classification;visual vocabularies;Character generation;Feeds;Image databases;Kernel;Pattern classification;Power generation;Signal generators;Spatial databases;Visual databases;Vocabulary}
+}
+
+@InProceedings{perronnin10,
+  Title                    = {Large-scale image retrieval with compressed Fisher vectors},
+  Author                   = {Perronnin, F. and Yan Liu and Sanchez, J. and Poirier, H.},
+  Booktitle                = {Computer Vision and Pattern Recognition (CVPR), 2010 IEEE Conference on},
+  Year                     = {2010},
+  Month                    = {June},
+  Pages                    = {3384-3391},
+
+  ISSN                     = {1063-6919},
+  Keywords                 = {data compression;image coding;image representation;image retrieval;Fisher kernel framework;Fisher representation;binarization approach;compressed Fisher vectors;large-scale image retrieval;large-scale image search;memory footprint;standard compression technique;Europe;Helium;Histograms;Image coding;Image retrieval;Image storage;Large-scale systems;Quantization;Random access memory;Vocabulary}
+}
+
+@InCollection{perronin10:improvingFK,
+  Title                    = {Improving the Fisher Kernel for Large-Scale Image Classification},
+  Author                   = {Perronnin, Florent and Sánchez, Jorge and Mensink, Thomas},
+  Booktitle                = {Computer Vision – ECCV 2010},
+  Publisher                = {Springer Berlin Heidelberg},
+  Year                     = {2010},
+  Editor                   = {Daniilidis, Kostas and Maragos, Petros and Paragios, Nikos},
+  Pages                    = {143-156},
+  Series                   = {Lecture Notes in Computer Science},
+  Volume                   = {6314},
+
+  ISBN                     = {978-3-642-15560-4},
+  Language                 = {English}
+}
+
+@InProceedings{philbin08,
+  Title                    = {Lost in quantization: Improving particular object retrieval in large scale image databases},
+  Author                   = {Philbin, J. and Chum, O. and Isard, M. and Sivic, J. and Zisserman, A.},
+  Booktitle                = {Computer Vision and Pattern Recognition, 2008. CVPR 2008. IEEE Conference on},
+  Year                     = {2008},
+  Month                    = {June},
+  Pages                    = {1-8},
+
+  ISSN                     = {1063-6919}
+}
+
+@InProceedings{philbin07,
+  Title                    = {Object Retrieval with Large Vocabularies and Fast Spatial Matching},
+  Author                   = {Philbin, J. and Chum, O. and Isard, M. and Sivic, J. and Zisserman, A.},
+  Booktitle                = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  Year                     = {2007}
+}
+
+@Article{picard13,
+  Title                    = {Efficient image signatures and similarities using tensor products of local descriptors },
+  Author                   = {David Picard and Philippe-Henri Gosselin},
+  Journal                  = {Computer Vision and Image Understanding },
+  Year                     = {2013},
+  Number                   = {6},
+  Pages                    = {680 - 687},
+  Volume                   = {117},
+
+  ISSN                     = {1077-3142}
+}
+
+@InProceedings{rublee11,
+  Title                    = {ORB: An efficient alternative to SIFT or SURF},
+  Author                   = {Rublee, E. and Rabaud, V. and Konolige, K. and Bradski, G.},
+  Booktitle                = {Computer Vision (ICCV), 2011 IEEE International Conference on},
+  Year                     = {2011},
+  Month                    = {Nov},
+  Pages                    = {2564-2571},
+
+  ISSN                     = {1550-5499},
+  Keywords                 = {computer vision;image matching;object detection;object recognition;tracking;transforms;BRIEF;ORB;SIFT;SURF;binary descriptor;computer vision;feature matching;noise resistance;object detection;object recognition;patch-tracking;smart phone;Boats}
+}
+
+@Article{sanchez13,
+  Title                    = {Image Classification with the Fisher Vector: Theory and Practice},
+  Author                   = {S{\`a}nchez, Jorge and Perronnin, Florent and Mensink, Thomas and Verbeek, Jakob},
+  Journal                  = {International Journal of Computer Vision},
+  Year                     = {2013},
+  Number                   = {3},
+  Pages                    = {222-245},
+  Volume                   = {105},
+
+  ISSN                     = {0920-5691},
+  Keywords                 = {Image classification; Large-scale classification; Bag-of-Visual words; Fisher vector; Fisher kernel; Product quantization},
+  Language                 = {English},
+  Publisher                = {Springer US}
+}
+
+@Book{Salton1986,
+  Title                    = {Introduction to Modern Information Retrieval},
+  Author                   = {Salton, Gerard and McGill, Michael J.},
+  Publisher                = {McGraw-Hill, Inc.},
+  Year                     = {1986},
+
+  Address                  = {New York, NY, USA},
+
+  ISBN                     = {0070544840},
+  Owner                    = {Lucia},
+  Timestamp                = {2015.04.13}
+}
+
+@Book{salton86,
+  Title                    = {Introduction to Modern Information Retrieval},
+  Author                   = {Salton, Gerard and McGill, Michael J.},
+  Publisher                = {McGraw-Hill, Inc.},
+  Year                     = {1986},
+
+  Address                  = {New York, NY, USA},
+
+  ISBN                     = {0070544840}
+}
+
+@InCollection{simonyan12,
+  Title                    = {Descriptor Learning Using Convex Optimisation},
+  Author                   = {Simonyan, Karen and Vedaldi, Andrea and Zisserman, Andrew},
+  Booktitle                = {Computer Vision - ECCV 2012},
+  Publisher                = {Springer Berlin Heidelberg},
+  Year                     = {2012},
+  Editor                   = {Fitzgibbon, Andrew and Lazebnik, Svetlana and Perona, Pietro and Sato, Yoichi and Schmid, Cordelia},
+  Pages                    = {243-256},
+  Series                   = {Lecture Notes in Computer Science},
+  Volume                   = {7572},
+
+  ISBN                     = {978-3-642-33717-8}
+}
+
+@InProceedings{sivic03,
+  Title                    = {Video Google: A Text Retrieval Approach to Object Matching in Videos},
+  Author                   = {Sivic, Josef and Zisserman, Andrew},
+  Booktitle                = {Proceedings of the Ninth IEEE International Conference on Computer Vision - Volume 2},
+  Year                     = {2003},
+
+  Address                  = {Washington, DC, USA},
+  Pages                    = {1470--},
+  Publisher                = {IEEE Computer Society},
+  Series                   = {ICCV '03},
+
+  Acmid                    = {946751},
+  ISBN                     = {0-7695-1950-4}
+}
+
+@InProceedings{thomee10,
+  Title                    = {TOP-SURF: A Visual Words Toolkit},
+  Author                   = {Thomee, Bart and Bakker, Erwin M. and Lew, Michael S.},
+  Booktitle                = {Proceedings of the International Conference on Multimedia},
+  Year                     = {2010},
+
+  Address                  = {New York, NY, USA},
+  Pages                    = {1473--1476},
+  Publisher                = {ACM},
+  Series                   = {MM '10},
+
+  Acmid                    = {1874250},
+  ISBN                     = {978-1-60558-933-6},
+  Location                 = {Firenze, Italy},
+  Numpages                 = {4}
+}
+
+@Book{titterington85,
+  Title                    = {Statistical analysis of finite mixture distributions},
+  Author                   = {Titterington, D.M. and Smith, A.F.M. and Makov, U.E.},
+  Publisher                = {Wiley},
+  Year                     = {1985},
+  Series                   = {Wiley series in probability and mathematical statistics: Applied probability and statistics},
+
+  ISBN                     = {9780471907633},
+  Lccn                     = {85006434}
+}
+
+@InProceedings{tolias11:SpeededUp,
+  Title                    = {Speeded-up, relaxed spatial matching},
+  Author                   = {Tolias, G. and Avrithis, Y.},
+  Booktitle                = {Computer Vision (ICCV), 2011 IEEE International Conference on},
+  Year                     = {2011},
+  Month                    = {Nov},
+  Pages                    = {1653-1660},
+
+  ISSN                     = {1550-5499}
+}
+
+@InProceedings{tolias13,
+  Title                    = {To aggregate or not to aggregate: Selective match kernels for image search},
+  Author                   = {Tolias, Giorgos and Avrithis, Yannis and J{\'e}gou, Herv{\'e}},
+  Booktitle                = {Computer Vision (ICCV), 2013 IEEE International Conference on},
+  Year                     = {2013},
+  Organization             = {IEEE},
+  Pages                    = {1401--1408}
+}
+
+@InCollection{tolias14,
+  Title                    = {Orientation Covariant Aggregation of Local Descriptors with Embeddings},
+  Author                   = {Tolias, Giorgos and Furon, Teddy and J\'egou, Herv\'e},
+  Booktitle                = {Computer Vision - ECCV 2014},
+  Publisher                = {Springer International Publishing},
+  Year                     = {2014},
+  Editor                   = {Fleet, David and Pajdla, Tomas and Schiele, Bernt and Tuytelaars, Tinne},
+  Pages                    = {382-397},
+  Series                   = {Lecture Notes in Computer Science},
+  Volume                   = {8694},
+
+  ISBN                     = {978-3-319-10598-7}
+}
+
+@TechReport{tolias13:queryExp,
+  Title                    = {{Local visual query expansion: Exploiting an image collection to refine local descriptors}},
+  Author                   = {Tolias, Giorgos and J{\'e}gou, Herv{\'e}},
+  Year                     = {2013},
+  Month                    = Jul,
+  Number                   = {RR-8325},
+  Type                     = {Research Report}
+}
+
+@InProceedings{uchida13,
+  Title                    = {Image Retrieval with Fisher Vectors of Binary Features},
+  Author                   = {Uchida, Y. and Sakazawa, S.},
+  Booktitle                = {Pattern Recognition (ACPR), 2013 2nd IAPR Asian Conference on},
+  Year                     = {2013},
+  Month                    = {Nov},
+  Pages                    = {23-28},
+
+  Keywords                 = {image classification;image retrieval;mixture models;vectors;BRISK;Bernoulli mixture model;FREAK;Fisher vector representation;ORB;binary features;binary words approach;closed-form approximation;continuous feature descriptors;image classification;image retrieval;local features;performance improvement;Accuracy;Approximation methods;Feature extraction;Image retrieval;Kernel;Vectors;Visualization;Bernoulli mixture model;Fisher vector;binary feature;image retrieval}
+}
+
+@InProceedings{van14,
+  Title                    = {Camera-based Indoor Positioning using Scalable Streaming of Compressed Binary Image Signatures},
+  Author                   = {Van Opdenbosch, D and Schroth, G and Huitl, R and Hilsenbeck, S and Garcea, A and Steinbach, E},
+  Booktitle                = {IEEE International Conference on Image Processing},
+  Year                     = {2014}
+}
+
+@InProceedings{vevaldi09,
+  Title                    = {Multiple kernels for object detection},
+  Author                   = {Vedaldi, A. and Gulshan, V. and Varma, M. and Zisserman, A.},
+  Booktitle                = {Computer Vision, 2009 IEEE 12th International Conference on},
+  Year                     = {2009},
+  Month                    = {Sept},
+  Pages                    = {606-613},
+
+  ISSN                     = {1550-5499}
+}
+
+@Article{vedaldi12,
+  Title                    = {Efficient Additive Kernels via Explicit Feature Maps},
+  Author                   = {Vedaldi, A. and Zisserman, A.},
+  Journal                  = {Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  Year                     = {2012},
+
+  Month                    = {March},
+  Number                   = {3},
+  Pages                    = {480-492},
+  Volume                   = {34},
+
+  ISSN                     = {0162-8828},
+  Keywords                 = {approximation theory;computer vision;data handling;feature extraction;learning (artificial intelligence);spectral analysis;support vector machines;Nystrom approximation;additive homogeneous kernels;approximate finite-dimensional feature maps;approximation error;computer vision;data dependency;explicit feature maps;exponential decay;large scale nonlinear support vector machines;linear SVM;spectral analysis;Additives;Approximation methods;Histograms;Kernel;Measurement;Support vector machines;Training;Kernel methods;feature map;large scale learning;object detection.;object recognition}
+}
+
+@Article{vinokourov2001,
+  Title                    = {Document classification employing the Fisher kernel derived from probabilistic hierarchic corpus representations},
+  Author                   = {Vinokourov, Alexei and Girolami, Mark},
+  Year                     = {2001},
+
+  Publisher                = {Citeseer}
+}
+
+@InProceedings{wan2003,
+  Title                    = {SVMSVM: support vector machine speaker verification methodology},
+  Author                   = {Wan, V. and Renals, S.},
+  Booktitle                = {Acoustics, Speech, and Signal Processing, 2003. Proceedings. (ICASSP '03). 2003 IEEE International Conference on},
+  Year                     = {2003},
+  Month                    = {April},
+  Pages                    = {II-221-4 vol.2},
+  Volume                   = {2},
+
+  ISSN                     = {1520-6149}
+}
+
+@InProceedings{wang10,
+  Title                    = {Locality-constrained Linear Coding for image classification},
+  Author                   = {Jinjun Wang and Jianchao Yang and Kai Yu and Fengjun Lv and Huang, T. and Yihong Gong},
+  Booktitle                = {Computer Vision and Pattern Recognition (CVPR), 2010 IEEE Conference on},
+  Year                     = {2010},
+  Month                    = {June},
+  Pages                    = {3360-3367},
+
+  ISSN                     = {1063-6919}
+}
+
+@Book{witten99,
+  Title                    = {Managing gigabytes: compressing and indexing documents and images},
+  Author                   = {Witten, Ian H and Moffat, Alistair and Bell, Timothy C},
+  Publisher                = {Morgan Kaufmann},
+  Year                     = {1999}
+}
+
+@InProceedings{wu09,
+  Title                    = {Bundling features for large scale partial-duplicate web image search},
+  Author                   = {Zhong Wu and Qifa Ke and Isard, M. and Jian Sun},
+  Booktitle                = {Computer Vision and Pattern Recognition, 2009. CVPR 2009. IEEE Conference on},
+  Year                     = {2009},
+  Month                    = {June},
+  Pages                    = {25-32}
+}
+
+@InProceedings{yang09,
+  Title                    = {Linear spatial pyramid matching using sparse coding for image classification},
+  Author                   = {Jianchao Yang and Kai Yu and Yihong Gong and Huang, T.},
+  Booktitle                = {Computer Vision and Pattern Recognition, 2009. CVPR 2009. IEEE Conference on},
+  Year                     = {2009},
+  Month                    = {June},
+  Pages                    = {1794-1801},
+
+  ISSN                     = {1063-6919}
+}
+
+@InProceedings{zhang09,
+  Title                    = {Efficient indexing for large scale visual search},
+  Author                   = {Xiao Zhang and Zhiwei Li and Lei Zhang and Wei-Ying Ma and Heung-Yeung Shum},
+  Booktitle                = {Computer Vision, 2009 IEEE 12th International Conference on},
+  Year                     = {2009},
+  Month                    = {Sept},
+  Pages                    = {1103-1110},
+
+  ISSN                     = {1550-5499}
+}
+
+@InProceedings{zhao13,
+  Title                    = {{Oriented pooling for dense and non-dense rotation-invariant features}},
+  Author                   = {Zhao, Wan-Lei and J{\'e}gou, Herv{\'e} and Gravier, Guillaume},
+  Booktitle                = {{BMVC - 24th British Machine Vision Conference}},
+  Year                     = {2013},
+
+  Address                  = {Bristol, United Kingdom},
+  Month                    = Sep,
+
+  Hal_id                   = {hal-00841590},
+  Hal_version              = {v2},
+  Url                      = {https://hal.inria.fr/hal-00841590}
+}
+
