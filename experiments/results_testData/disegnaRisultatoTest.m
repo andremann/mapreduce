@@ -6,7 +6,7 @@
 %%X = [mvnrnd(MU1,SIGMA1,1000);mvnrnd(MU2,SIGMA2,1000)];
 %%
 
-
+X= importdata('C:\Users\Lucia\SkyDrive\UNI\cloudComp\project\mapreduce\experiments\testData\x.txt');
 %k2
 figure
 scatter(X(:,1),X(:,2),10,'.')%prima caricare x.txt
