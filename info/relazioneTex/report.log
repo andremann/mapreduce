@@ -1,9 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.7)  10 JUL 2015 12:29
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.1.7)  10 JUL 2015 14:56
 entering extended mode
-**relazione.tex
-
-(C:\Users\Lucia\SkyDrive\UNI\cloudComp\project\mapreduce\info\relazioneTex\rela
-zione.tex
+**report.tex
+(C:\Users\Lucia\SkyDrive\UNI\cloudComp\relazioneTex\report.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -397,8 +395,7 @@ Package color Info: Driver file: pdftex.def on input line 130.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\dvipsnam.def"
 File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 ))
-(C:\Users\Lucia\SkyDrive\UNI\cloudComp\project\mapreduce\info\relazioneTex\rela
-zione.aux)
+(C:\Users\Lucia\SkyDrive\UNI\cloudComp\relazioneTex\report.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
@@ -464,53 +461,51 @@ Underfull \hbox (badness 10000) in paragraph at lines 176--178
 [3] <ourGmmK2.png, id=26, 420.06938pt x 294.34969pt>
 File: ourGmmK2.png Graphic file (type png)
  <use ourGmmK2.png>
-Package pdftex.def Info: ourGmmK2.png used on input line 193.
+Package pdftex.def Info: ourGmmK2.png used on input line 194.
 (pdftex.def)             Requested size: 172.5pt x 120.87279pt.
 
 <ourGmmK2-ezsurf.png, id=27, 420.06938pt x 296.60812pt>
 File: ourGmmK2-ezsurf.png Graphic file (type png)
 
 <use ourGmmK2-ezsurf.png>
-Package pdftex.def Info: ourGmmK2-ezsurf.png used on input line 194.
+Package pdftex.def Info: ourGmmK2-ezsurf.png used on input line 195.
 (pdftex.def)             Requested size: 172.5pt x 121.8002pt.
 
-Overfull \hbox (24.0pt too wide) in paragraph at lines 192--197
+Overfull \hbox (24.0pt too wide) in paragraph at lines 193--198
  [][] 
  []
 
-
-(C:\Users\Lucia\SkyDrive\UNI\cloudComp\project\mapreduce\info\relazioneTex\rela
-zione.bbl) [4 <C:/Users/Lucia/SkyDrive/UNI/cloudComp/project/mapreduce/info/rel
-azioneTex/ourGmmK2.png (PNG copy)> <C:/Users/Lucia/SkyDrive/UNI/cloudComp/proje
-ct/mapreduce/info/relazioneTex/ourGmmK2-ezsurf.png (PNG copy)>]
-(C:\Users\Lucia\SkyDrive\UNI\cloudComp\project\mapreduce\info\relazioneTex\rela
-zione.aux) ) 
+(C:\Users\Lucia\SkyDrive\UNI\cloudComp\relazioneTex\report.bbl) [4 <C:/Users/Lu
+cia/SkyDrive/UNI/cloudComp/relazioneTex/ourGmmK2.png (PNG copy)> <C:/Users/Luci
+a/SkyDrive/UNI/cloudComp/relazioneTex/ourGmmK2-ezsurf.png (PNG copy)>]
+(C:\Users\Lucia\SkyDrive\UNI\cloudComp\relazioneTex\report.aux) ) 
 Here is how much of TeX's memory you used:
  2981 strings out of 493921
- 37785 string characters out of 3144877
+ 37542 string characters out of 3144877
  99592 words of memory out of 3000000
  6227 multiletter control sequences out of 15000+200000
  11849 words of font info for 46 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 27i,12n,26p,533b,316s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmb
-x12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex1
-0.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.
-pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb
-><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C
-:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/P
-rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Prog
-ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program
- Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (
-x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9
-/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on relazione.pdf (4 pages, 222753 bytes).
+ 27i,12n,26p,530b,316s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files 
+(x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files (x
+86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86
+)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files (x86)/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/symbols/msbm10.pfb>
+Output written on report.pdf (4 pages, 222953 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
